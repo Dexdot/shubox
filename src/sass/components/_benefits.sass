@@ -1,0 +1,72 @@
+$ben-b: rgba(#000, 0.1)
+  
+.benefits
+  +yo('margin-top', (500px: 56px, 1440px: 104px))
+  @media (min-width: 801px)
+    border-top: 1px solid $ben-b
+
+.benefits-list
+  display: flex
+  padding: 0 9.719999999999999vw
+  @media (max-width: 800px)
+    flex-direction: column
+    padding: 0
+
+
+.benefit
+  padding: 88px 56px
+
+  @media (min-width: 801px)
+    min-width: 33.3333%
+    width: 33.3333%
+    border-left: 1px solid $ben-b
+
+  @media (min-width: 2200px) 
+    padding: 88px 64px
+
+  @media (max-width: 1200px) 
+    padding: 64px 40px
+
+  @media (max-width: 1000px) 
+    padding: 56px 24px
+
+  @media (max-width: 800px) 
+    padding: 32px $unit
+    border-top: 1px solid $ben-b
+
+  &:last-child
+    @media (min-width: 801px)
+      border-right: 1px solid $ben-b
+
+  img
+    width: 48px
+    margin-bottom: 12px
+
+  .t-h3
+    line-height: 1.4
+    margin-bottom: 0.5em
+
+    @media (max-width: 800px)
+      margin-bottom: 16px
+
+  ul
+    line-height: 1.2
+
+    li
+      position: relative
+      padding-left: 20px
+
+      &::before
+        content: ''
+        position: absolute
+        top: 0.5em
+        left: 0
+
+        width: 4px
+        height: 4px
+        transform: rotate(-45deg)
+
+        background: #000
+
+    li:not(:last-child)
+      margin-bottom: 0.75em
