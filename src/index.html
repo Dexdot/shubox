@@ -45,7 +45,7 @@
 
 <!-- Sprite -->
 <!-- SVG Sprite -->
-<div style="display: none"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="i-chevron" viewBox="0 0 14 14"><path d="M3.5 5.25L7 8.75l3.5-3.5"/></symbol><symbol id="i-close" viewBox="0 0 22 22"><path d="M1 1l10 10m10 10L11 11m0 0L21 1 1 21"/></symbol><symbol id="i-plus" viewBox="0 0 14 14"><path d="M7 2.917v8.166M2.918 7h8.167" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg></div>
+<div style="display: none"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="i-arrow"><path d="M.646 3.646a.5.5 0 000 .708l3.182 3.182a.5.5 0 10.708-.708L1.707 4l2.829-2.828a.5.5 0 00-.708-.708L.646 3.646zm75.17-.146H1v1h74.816v-1z"/></symbol><symbol id="i-chevron"><path d="M15 18l-6-6 6-6"/></symbol><symbol id="i-close" viewBox="0 0 22 22"><path d="M1 1l10 10m10 10L11 11m0 0L21 1 1 21"/></symbol><symbol id="i-plus" viewBox="0 0 14 14"><path d="M7 2.917v8.166M2.918 7h8.167" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg></div>
 <!-- ./SVG Sprite -->
 
 <!-- Header -->
@@ -109,6 +109,80 @@
         Банкетки с системой хранения от 35.000 руб
       </h1>
       <a href="#" class="link">Скачать каталог</a>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery__head">
+      <h2 class="gallery__title">Сделаем 3D визуализацию <b>бесплатно</b></h2>
+      <div class="gallery__text">
+        <p>
+          Хотите увидеть, как будет выглядеть новая мебель в вашем интерьере?
+          Хотите увидеть, как будет выглядеть новая мебель в вашем интерьере?
+        </p>
+        <a href="#" class="link">Получить 3D проект</a>
+      </div>
+    </div>
+
+    <div class="gallery-slider">
+      <ul>
+        <li class="gallery-slide">
+          <div class="img">
+            <img src="/img/v1.jpg" alt="" class="img__i" />
+          </div>
+        </li>
+        <li class="gallery-slide">
+          <div class="img">
+            <img src="/img/hero.jpg" alt="" class="img__i" />
+          </div>
+        </li>
+        <li class="gallery-slide">
+          <div class="img">
+            <img src="/img/render.jpg" alt="" class="img__i" />
+          </div>
+        </li>
+      </ul>
+
+      <div class="slider-nav">
+        <button
+          type="button"
+          class="slider-nav__btn slider-nav__btn--prev js-gallery-prev"
+        >
+          <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
+        </button>
+        <ul class="slider-nav__dots">
+          <li>
+            <button class="js-gallery-dot" type="button"></button>
+          </li>
+          <li>
+            <button class="js-gallery-dot" type="button"></button>
+          </li>
+          <li>
+            <button class="js-gallery-dot" type="button"></button>
+          </li>
+        </ul>
+        <button
+          type="button"
+          class="slider-nav__btn slider-nav__btn--next js-gallery-next"
+        >
+          <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
+        </button>
+      </div>
+
+      <div class="slider-nav slider-nav--mob">
+        <button
+          type="button"
+          class="slider-nav__btn slider-nav__btn--prev js-gallery-prev"
+        >
+          <svg class="i-chevron"><use xlink:href="#i-chevron" /></svg>
+        </button>
+        <button
+          type="button"
+          class="slider-nav__btn slider-nav__btn--next js-gallery-next"
+        >
+          <svg class="i-chevron"><use xlink:href="#i-chevron" /></svg>
+        </button>
+      </div>
     </div>
   </section>
 </main>

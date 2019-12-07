@@ -94,6 +94,18 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 
 /***/ }),
 
+/***/ "./src/js/components/slider.js":
+/*!*************************************!*\
+  !*** ./src/js/components/slider.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"]) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError(\"Invalid attempt to destructure non-iterable instance\"); } }; }();\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar Slider = function () {\n  function Slider(el) {\n    _classCallCheck(this, Slider);\n\n    this.DOM = { el: el };\n    this.DOM.slides = Array.from(this.DOM.el.children);\n\n    var _DOM$slides = _slicedToArray(this.DOM.slides, 1);\n\n    this.DOM.active = _DOM$slides[0];\n\n    this.showSlide();\n\n    this.index = 0;\n\n    this.event = {\n      update: {\n        begin: new CustomEvent('slider:updatebegin', { detail: this }),\n        complete: new CustomEvent('slider:updatecomplete', { detail: this })\n      },\n      prev: {\n        begin: new CustomEvent('slider:prevbegin', { detail: this }),\n        complete: new CustomEvent('slider:prevcomplete', { detail: this })\n      },\n      next: {\n        begin: new CustomEvent('slider:nextbegin', { detail: this }),\n        complete: new CustomEvent('slider:nextcomplete', { detail: this })\n      }\n    };\n  }\n\n  _createClass(Slider, [{\n    key: 'update',\n    value: function update(action, i) {\n      if (Number.isInteger(i)) {\n        // Dispatch update:begin\n        this.DOM.el.dispatchEvent(this.event.update.begin);\n\n        // Hide slides\n        this.hideSlides();\n\n        // Set new index and active slide\n        this.index = i;\n        this.DOM.active = this.DOM.slides[this.index];\n\n        // Show active slide\n        this.showSlide();\n\n        // Dispatch update:complete\n        this.DOM.el.dispatchEvent(this.event.update.complete);\n\n        // Exit\n        return true;\n      }\n\n      // Dispatch update:begin\n      this.DOM.el.dispatchEvent(this.event.update.begin);\n\n      // Hide slides\n      this.hideSlides();\n\n      switch (action) {\n        case 'prev':\n          if (this.index > 0) this.index = this.index - 1;\n          // this.index =\n          //   this.index <= 0 ? this.DOM.slides.length - 1 : this.index - 1;\n          break;\n        case 'next':\n          if (this.index < this.DOM.slides.length - 1) this.index = this.index + 1;\n          // this.index =\n          //   this.index === this.DOM.slides.length - 1 ? 0 : this.index + 1;\n          break;\n\n        default:\n          break;\n      }\n\n      // Set active slide\n      this.DOM.active = this.DOM.slides[this.index];\n\n      // Show active slide\n      this.showSlide();\n\n      // Dispatch update:complete\n      this.DOM.el.dispatchEvent(this.event.update.complete);\n\n      // Exit\n      return true;\n    }\n  }, {\n    key: 'prev',\n    value: function prev() {\n      this.DOM.el.dispatchEvent(this.event.prev.begin);\n      this.update('prev');\n      this.DOM.el.dispatchEvent(this.event.prev.complete);\n    }\n  }, {\n    key: 'next',\n    value: function next() {\n      this.DOM.el.dispatchEvent(this.event.next.begin);\n      this.update('next');\n      this.DOM.el.dispatchEvent(this.event.next.complete);\n    }\n  }, {\n    key: 'hideSlides',\n    value: function hideSlides() {\n      this.DOM.slides.forEach(function (slide) {\n        slide.classList.remove('active');\n      });\n    }\n  }, {\n    key: 'showSlide',\n    value: function showSlide() {\n      this.DOM.active.classList.add('active');\n    }\n  }]);\n\n  return Slider;\n}();\n\nexports.default = Slider;\n\n//# sourceURL=webpack:///./src/js/components/slider.js?");
+
+/***/ }),
+
 /***/ "./src/js/helpers/utils.js":
 /*!*********************************!*\
   !*** ./src/js/helpers/utils.js ***!
@@ -102,7 +114,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar qs = exports.qs = function qs(selector) {\n  var ctx = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;\n  return ctx.querySelector(selector);\n};\n\nvar qsa = exports.qsa = function qsa(selector) {\n  var ctx = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;\n  return Array.from(ctx.querySelectorAll(selector));\n};\n\nvar each = exports.each = function each(selector, cb) {\n  var elements = qsa(selector);\n\n  if (elements.length <= 0) return false;\n\n  elements.forEach(function (el, i) {\n    cb(el, i);\n  });\n};\n\nvar delegate = exports.delegate = function delegate(selector, cb) {\n  var ev = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'click';\n\n  document.addEventListener(ev, function (e) {\n    var el = e.target.closest(selector);\n    if (el) {\n      cb(e, el);\n    }\n  }, false);\n};\n\n//# sourceURL=webpack:///./src/js/helpers/utils.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nvar qs = exports.qs = function qs(selector) {\n  var ctx = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;\n  return ctx.querySelector(selector);\n};\n\nvar qsa = exports.qsa = function qsa(selector) {\n  var ctx = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;\n  return Array.from(ctx.querySelectorAll(selector));\n};\n\nvar each = exports.each = function each(selector, cb) {\n  var elements = qsa(selector);\n\n  if (elements.length <= 0) return false;\n\n  elements.forEach(function (el, i) {\n    cb(el, i);\n  });\n};\n\nvar delegate = exports.delegate = function delegate(selector, cb) {\n  var ev = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'click';\n\n  document.addEventListener(ev, function (e) {\n    var el = e.target.closest(selector);\n    if (el) {\n      cb(e, el);\n    }\n  }, false);\n};\n\nvar nodeIndex = exports.nodeIndex = function nodeIndex(el) {\n  return [].concat(_toConsumableArray(el.parentNode.children)).indexOf(el);\n};\n\n//# sourceURL=webpack:///./src/js/helpers/utils.js?");
 
 /***/ }),
 
@@ -142,6 +154,18 @@ eval("/* WEBPACK VAR INJECTION */(function($) {\n\nvar _locomotiveScroll = __web
 
 /***/ }),
 
+/***/ "./src/js/init/slider.js":
+/*!*******************************!*\
+  !*** ./src/js/init/slider.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("/* WEBPACK VAR INJECTION */(function($) {\n\nvar _slider = __webpack_require__(/*! @/components/slider */ \"./src/js/components/slider.js\");\n\nvar _slider2 = _interopRequireDefault(_slider);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nwindow.addEventListener('DOMContentLoaded', function () {\n  var onUpdate = function onUpdate(_ref) {\n    var index = _ref.index,\n        DOM = _ref.DOM;\n\n    // Dots\n    $.each('.gallery-slider .slider-nav__dots li', function (li) {\n      li.classList.remove('active');\n    });\n\n    $.qs('.gallery-slider .slider-nav__dots li:nth-child(' + (index + 1) + ')').classList.add('active');\n\n    // Arrows\n    if (index === 0) {\n      $.each('.js-gallery-prev', function (el) {\n        el.classList.remove('active');\n      });\n    } else {\n      $.each('.js-gallery-prev', function (el) {\n        el.classList.add('active');\n      });\n    }\n\n    if (index === DOM.slides.length - 1) {\n      $.each('.js-gallery-next', function (el) {\n        el.classList.remove('active');\n      });\n    } else {\n      $.each('.js-gallery-next', function (el) {\n        el.classList.add('active');\n      });\n    }\n  };\n\n  var gallery = new _slider2.default($.qs('.gallery-slider ul'));\n  onUpdate(gallery);\n  gallery.DOM.el.addEventListener('slider:updatecomplete', function () {\n    onUpdate(gallery);\n  });\n\n  $.delegate('.js-gallery-prev', function () {\n    gallery.prev();\n  });\n  $.delegate('.js-gallery-next', function () {\n    gallery.next();\n  });\n  $.delegate('.js-gallery-dot', function (e, btn) {\n    gallery.update('', $.nodeIndex(btn.parentElement));\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! utils */ \"./src/js/helpers/utils.js\")))\n\n//# sourceURL=webpack:///./src/js/init/slider.js?");
+
+/***/ }),
+
 /***/ "./src/js/pages/index.js":
 /*!*******************************!*\
   !*** ./src/js/pages/index.js ***!
@@ -150,7 +174,7 @@ eval("/* WEBPACK VAR INJECTION */(function($) {\n\nvar _locomotiveScroll = __web
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n__webpack_require__(/*! @/init/css-props */ \"./src/js/init/css-props.js\");\n\n__webpack_require__(/*! @/init/scroll */ \"./src/js/init/scroll.js\");\n\n__webpack_require__(/*! @/init/burger */ \"./src/js/init/burger.js\");\n\n//# sourceURL=webpack:///./src/js/pages/index.js?");
+eval("\n\n__webpack_require__(/*! @/init/css-props */ \"./src/js/init/css-props.js\");\n\n__webpack_require__(/*! @/init/scroll */ \"./src/js/init/scroll.js\");\n\n__webpack_require__(/*! @/init/burger */ \"./src/js/init/burger.js\");\n\n__webpack_require__(/*! @/init/slider */ \"./src/js/init/slider.js\");\n\n//# sourceURL=webpack:///./src/js/pages/index.js?");
 
 /***/ }),
 

@@ -25,3 +25,5 @@ export const delegate = (selector, cb, ev = 'click') => {
     false
   );
 };
+
+export const nodeIndex = el => [...el.parentNode.children].indexOf(el);
