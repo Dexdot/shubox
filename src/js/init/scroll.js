@@ -1,17 +1,25 @@
 import LocomotiveScroll from 'locomotive-scroll';
 
-const loco = new LocomotiveScroll({
-  el: document.querySelector('#js-scroll'),
-  smooth: true,
-  getDirection: true
+let loco;
+
+window.addEventListener('DOMContentLoaded', () => {
+  loco = new LocomotiveScroll({
+    el: document.querySelector('#js-scroll'),
+    smooth: true,
+    getDirection: true
+  });
+
+  loco.on('scroll', ({ scroll }) => {
+    if (scroll.y > window.innerHeight / 2) {
+      $.qs('.header').classList.add('header--primary');
+    } else {
+      $.qs('.header').classList.remove('header--primary');
+    }
+  });
 });
 
-loco.on('scroll', ({ scroll }) => {
-  if (scroll.y > window.innerHeight / 2) {
-    $.qs('.header').classList.add('header--primary');
-  } else {
-    $.qs('.header').classList.remove('header--primary');
-  }
+window.addEventListener('load', () => {
+  if (loco) loco.update();
 });
 
 // $.delegate('.js-goto', (e, el) => {

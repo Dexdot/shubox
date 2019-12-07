@@ -1,0 +1,63 @@
+.features
+  @media (min-width: 801px)
+    padding-top: 18vh
+
+.feature
+  display: flex
+
+  &:nth-child(odd)
+    .feature__text
+      @media (min-width: 801px)
+        padding-left: 8vw
+
+    img
+      right: 0
+      left: unset
+
+  &:nth-child(even)
+    @media (min-width: 801px)
+      flex-direction: row-reverse
+    .feature__text
+      padding-right: 16%
+
+  @media (max-width: 800px)
+    flex-direction: column-reverse
+
+.feature__img
+  background: #f3f3f3
+  position: relative
+
+  @media (min-width: 801px)
+    min-width: 50vw
+    width: 50vw
+    height: 50vw
+
+  @media (max-width: 800px)
+    width: 100%
+    padding-bottom: 124%
+    
+
+
+.feature__img img
+  @media (min-width: 801px)
+    width: 40.28vw
+
+.feature__text
+  padding-top: 14vh
+  
+  @media (max-width: 1000px)
+    padding-top: 48px
+
+  @media (max-width: 800px)
+    padding: 56px $unit
+
+  @media (min-width: 801px)
+    max-width: 40.28vw
+
+
+.feature__text p:not(:last-child)
+  margin-bottom: 2.5em
+
+.feature__title
+  line-height: 1
+  margin-bottom: 0.85em
