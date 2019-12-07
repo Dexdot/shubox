@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   loco.on('scroll', ({ scroll }) => {
-    if (scroll.y > window.innerHeight / 2) {
+    if (scroll.y > 80) {
       $.qs('.header').classList.add('header--primary');
     } else {
       $.qs('.header').classList.remove('header--primary');

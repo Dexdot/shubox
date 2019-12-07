@@ -1,1 +1,88 @@
-.footer
+.footer__info
+  &.text-block__info
+    min-width: 20em
+    width: 20em
+    max-width: 20em
+
+  b
+    +mont(m)
+
+    display: block
+    margin-bottom: 8px
+    &:not(:first-child)
+      margin-top: 40px
+
+  p a
+    +link($grey)
+
+  a
+    transition: $trs
+    &:hover
+      opacity: 0.6
+
+    img
+      width: 18px
+      height: 18px
+      margin-right: 8px
+    .i-arrow-sm
+      margin-left: 4px
+      fill: $grey
+
+.copyright
+  font-size: 14px
+
+  display: flex
+  padding: 24px $unit
+  @media (min-width: 1101px)
+    border-top: 1px solid rgba(#000, 0.1)
+    justify-content: space-between
+  @media (max-width: 1100px)
+    flex-direction: column
+    padding: 0 $unit 40px
+
+  a
+    +link($grey)
+    transition: $trs
+    &:hover
+      opacity: 0.6
+
+  p
+    @media (max-width: 1100px)
+      text-align: center
+
+  b
+    line-height: 1.6
+    font-size: 14px
+    +mont(m)
+    @media (max-width: 1100px)
+      text-align: center
+      font-size: 10px
+      margin-top: 16px
+
+  p, ul
+    @media (min-width: 1101px)
+      flex: 1
+
+  ul
+    display: flex
+    @media (min-width: 1101px)
+      justify-content: flex-end
+    @media (max-width: 1100px)
+      order: -1
+      flex-direction: column
+
+      padding: 40px $unit
+      margin-bottom: 40px
+      width: calc(100% + #{$unit} * 2)
+      margin-left: calc(#{$unit} * -1)
+
+      border-top: 1px solid rgba(#000, 0.1)
+      border-bottom: 1px solid rgba(#000, 0.1)
+
+  ul li:not(:last-child)
+    margin-right: 40px
+    @media (max-width: 1200px)
+      margin-right: 16px
+    @media (max-width: 1100px)
+      margin-right: 0
+      margin-bottom: 16px
