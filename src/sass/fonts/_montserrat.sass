@@ -1,0 +1,32 @@
+@font-face
+  font-family: 'Montserrat'
+  src: url('../fonts/montserrat/Montserrat-Regular.woff2') format('woff2'),url('../fonts/montserrat/Montserrat-Regular.woff') format('woff')
+  font-style: normal
+  font-weight: 400
+  font-display: swap
+
+@font-face
+  font-family: 'Montserrat'
+  src: url('../fonts/montserrat/Montserrat-Medium.woff2') format('woff2'),url('../fonts/montserrat/Montserrat-Medium.woff') format('woff')
+  font-style: normal
+  font-weight: 500
+  font-display: swap
+
+@font-face
+  font-family: 'Montserrat'
+  src: url('../fonts/montserrat/Montserrat-SemiBold.woff2') format('woff2'),url('../fonts/montserrat/Montserrat-SemiBold.woff') format('woff')
+  font-style: normal
+  font-weight: 600
+  font-display: swap
+
+  
+=mont($weight: m)
+  @if $weight == r
+    font-family: 'Montserrat', sans-serif
+    font-weight: 400
+  @if $weight == m
+    font-family: 'Montserrat', sans-serif
+    font-weight: 500
+  @if $weight == sb
+    font-family: 'Montserrat', sans-serif
+    font-weight: 600
