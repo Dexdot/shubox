@@ -1,0 +1,66 @@
+.header
+  z-index: 1
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+
+  width: 100%
+
+.header__inner
+  display: flex
+  align-items: center
+  transition: opacity $trs-burger
+
+.header__logo
+  margin-right: 5.2vw
+
+.header__logo img
+  display: block
+  width: 100px
+  height: 85px
+
+.header__nav ul
+  display: flex
+  align-items: center
+
+.header__nav li:not(:last-child)
+  margin-right: 48px
+
+.header__nav a
+  transition: $trs
+  &:hover
+    opacity: 0.6
+
+.header__phone
+  +mont(m)
+  font-size: 12px
+
+  margin-left: auto
+
+.header__btn,
+.header__burger
+  position: absolute
+  top: 50%
+  transform: translate(0, -50%)
+
+  opacity: 0
+  pointer-events: none
+
+.header--primary
+  .header__inner
+    opacity: 0
+    pointer-events: none
+
+  .header__btn,
+  .header__burger
+    opacity: 1
+    pointer-events: auto
+
+.header__btn
+  transition: opacity $trs-burger
+  right: calc(#{$unit} + 64px)
+
+.header__burger
+  right: $unit
+  
