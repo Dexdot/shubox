@@ -19,4 +19,9 @@ $trs-burger: 0.4s cubic-bezier(.165,.84,.44,1)
 
 
 // Blocks
-$unit: 3.895vw !default
+\:root
+  --unit: 3.895vw
+  @media (max-width: 500px)
+    --unit: 16px
+
+$unit: var(--unit) !default

@@ -12,6 +12,10 @@
   align-items: center
   transition: opacity $trs-burger
 
+  @media (max-width: 1000px)
+    padding-top: 10px
+    padding-bottom: 10px
+
 .header__logo
   margin-right: 5.2vw
 
@@ -20,12 +24,26 @@
   width: 100px
   height: 85px
 
+  @media (max-width: 1000px)
+    width: 70px
+    height: 60px
+
+.header__nav
+  @media (max-width: 1000px)
+    display: none
+
 .header__nav ul
   display: flex
   align-items: center
 
 .header__nav li:not(:last-child)
   margin-right: 48px
+
+  @media (max-width: 1300px)
+    margin-right: 32px
+
+  @media (max-width: 1100px)
+    margin-right: 24px
 
 .header__nav a
   transition: $trs
@@ -37,6 +55,8 @@
   font-size: 12px
 
   margin-left: auto
+  @media (max-width: 1000px)
+    margin-right: 42px
 
 .header__btn,
 .header__burger
@@ -48,9 +68,18 @@
   pointer-events: none
 
 .header--primary
+  @media (max-width: 1000px)
+    background: #fff
+
+  .header__phone
+    @media (max-width: 1000px)
+      opacity: 0
+      pointer-events: none
+
   .header__inner
-    opacity: 0
-    pointer-events: none
+    @media (min-width: 1001px)
+      opacity: 0
+      pointer-events: none
 
   .header__btn,
   .header__burger
@@ -61,6 +90,12 @@
   transition: opacity $trs-burger
   right: calc(#{$unit} + 64px)
 
+  @media (max-width: 1000px)
+    right: calc(#{$unit} + 42px)
+
 .header__burger
   right: $unit
+  @media (max-width: 1000px)
+    opacity: 1
+    pointer-events: auto
   

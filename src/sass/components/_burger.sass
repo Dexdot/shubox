@@ -9,13 +9,17 @@
   transform: translateZ(0)
   transition: opacity $trs-burger
 
+  @media (max-width: 1000px)
+    height: 12px
+
   &-icon
     position: relative
     width: 32px
     height: 9px
 
-    @media (max-width: 500px)
+    @media (max-width: 1000px)
       width: 18px
+      height: 7px
 
     &-top,
     &-bottom,
@@ -63,6 +67,8 @@
 
     &-last
       bottom: -8px
+      @media (max-width: 1000px)
+        bottom: -5px
 
   &:hover
     .burger-icon
@@ -81,5 +87,8 @@
       opacity: 0
     .burger-icon-top
       transform: translateY(8px) rotate(45deg) translateZ(0)
+      @media (max-width: 1000px)
+        transform: translateY(6px) rotate(45deg) translateZ(0)
+
     .burger-icon-bottom
       transform: translateY(1px) rotate(-45deg) translateZ(0)
