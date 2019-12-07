@@ -114,7 +114,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/* WEBPACK VAR INJECTION */(function($) {\n\n$.delegate('.burger', function (e, el) {\n  el.classList.toggle('active');\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! utils */ \"./src/js/helpers/utils.js\")))\n\n//# sourceURL=webpack:///./src/js/init/burger.js?");
+eval("/* WEBPACK VAR INJECTION */(function($) {\n\n$.delegate('.burger', function (e, el) {\n  el.classList.toggle('active');\n  $.qs('.menu').classList.toggle('active');\n  $.qs('body').classList.toggle('menu-active');\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! utils */ \"./src/js/helpers/utils.js\")))\n\n//# sourceURL=webpack:///./src/js/init/burger.js?");
 
 /***/ }),
 
