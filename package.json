@@ -1,10 +1,10 @@
 {
-  "name": "buffet",
+  "name": "shubox",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "yarn build && cd dist && now && now alias buffet",
+    "deploy": "yarn build && cd dist && now",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
     "build": "gulp build"
@@ -47,6 +47,8 @@
     "webpack-stream": "4.0.3"
   },
   "dependencies": {
-    "locomotive-scroll": "^3.2.6"
+    "gsap": "2.1.3",
+    "locomotive-scroll": "^3.2.6",
+    "virtual-scroll": "^1.5.1"
   }
 }

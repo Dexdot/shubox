@@ -16,6 +16,20 @@ window.addEventListener('DOMContentLoaded', () => {
       $.qs('.header').classList.remove('header--primary');
     }
   });
+
+  window.loco = loco;
+  const { scrollbar } = loco.scroll;
+
+  window.scroll = {
+    start: () => {
+      if (scrollbar) scrollbar.classList.add('u-hidden');
+      loco.start();
+    },
+    stop: () => {
+      if (scrollbar) scrollbar.classList.remove('u-hidden');
+      loco.stop();
+    }
+  };
 });
 
 window.addEventListener('load', () => {
