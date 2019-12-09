@@ -8,6 +8,7 @@ export default class Zoomer {
   constructor() {
     this.DOM = {};
     this.DOM.el = $.qs('.zoomer__slider');
+    this.DOM.section = $.qs('.zoomer');
     this.DOM.scaleNode = $.qs('.zoomer__scale');
     this.DOM.imgNode = $.qs('.zoomer__img');
     this.DOM.slider = $.qs('.zoomer__slider');
@@ -188,7 +189,7 @@ export default class Zoomer {
     this.DOM.slider.style.height = `${height}px`;
   }
 
-  animateZoom() {
+  animateZoom(onComplete) {
     const { dataset } = this.zoomer.DOM.active;
     const x = window.parseFloat(dataset.x);
     const y = window.parseFloat(dataset.y);
@@ -202,7 +203,8 @@ export default class Zoomer {
     TweenMax.to(this.DOM.imgNode, 1, {
       x: `${x}%`,
       y: `${y}%`,
-      ease: Power2.easeInOut
+      ease: Power2.easeInOut,
+      onComplete
     });
   }
 
@@ -215,7 +217,9 @@ export default class Zoomer {
       ease: Power2.easeOut,
       delay: 0.2,
       onStart: () => {
-        this.animateZoom();
+        this.animateZoom(() => {
+          this.DOM.section.classList.add('u-ovh');
+        });
       }
     });
 
@@ -227,21 +231,31 @@ export default class Zoomer {
   }
 
   observe() {
-    this.observer = new IntersectionObserver(
-      items => {
-        items.forEach(({ isIntersecting, intersectionRatio }) => {
-          if (isIntersecting && intersectionRatio >= 0.05 && !this.animated) {
-            this.intro();
-            this.observer.unobserve(this.DOM.el);
-          }
-        });
-      },
-      {
-        threshold: [0, 0.05, 0.1, 0.25, 0.5, 0.75, 1]
-      }
-    );
+    const self = this;
 
-    this.observer.observe(this.DOM.el);
+    function onScroll({ scroll }) {
+      if (scroll.y >= window.innerHeight * 0.6) {
+        self.intro();
+        window.loco.off('scroll', onScroll);
+      }
+    }
+
+    window.loco.on('scroll', onScroll);
+    // this.observer = new IntersectionObserver(
+    //   items => {
+    //     items.forEach(({ isIntersecting, intersectionRatio }) => {
+    //       if (isIntersecting && intersectionRatio >= 0.8 && !this.animated) {
+    //         this.intro();
+    //         this.observer.unobserve(this.DOM.el);
+    //       }
+    //     });
+    //   },
+    //   {
+    //     threshold: [0, 0.05, 0.1, 0.25, 0.5, 0.75, 0.8, 0.9, 0.95, 1]
+    //   }
+    // );
+
+    // this.observer.observe(this.DOM.section);
   }
 }
 

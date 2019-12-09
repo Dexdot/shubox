@@ -4,7 +4,7 @@ const set = () => {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 
   const slide = $.qs('.zoomer__slide:nth-child(2)');
-  slide.dataset.x = window.innerWidth <= 1000 ? -40 : -44;
+  slide.dataset.x = window.innerWidth <= 1000 ? -50 : -57;
 };
 
 window.addEventListener('DOMContentLoaded', () => {
