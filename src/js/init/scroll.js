@@ -1,6 +1,17 @@
 import LocomotiveScroll from 'locomotive-scroll';
+import { TweenMax, Power2 } from 'gsap';
 
 let loco;
+
+const scrollbar = {
+  show: () => {
+    if (loco.scroll.scrollbar)
+      loco.scroll.scrollbar.classList.remove('u-hidden');
+  },
+  hide: () => {
+    if (loco.scroll.scrollbar) loco.scroll.scrollbar.classList.add('u-hidden');
+  }
+};
 
 window.addEventListener('DOMContentLoaded', () => {
   loco = new LocomotiveScroll({
@@ -18,16 +29,39 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   window.loco = loco;
-  const { scrollbar } = loco.scroll;
 
   window.scroll = {
     start: () => {
-      if (scrollbar) scrollbar.classList.add('u-hidden');
+      scrollbar.show();
       loco.start();
     },
     stop: () => {
-      if (scrollbar) scrollbar.classList.remove('u-hidden');
+      scrollbar.hide();
       loco.stop();
+    },
+    to: (selector, offset = 0, onComplete) => {
+      window.scroll.stop();
+
+      const y = $.qs(selector).offsetTop + offset;
+
+      TweenMax.fromTo(
+        '#js-scroll',
+        0.6,
+        {
+          y: -loco.scroll.instance.scroll.y
+        },
+        {
+          y: -y,
+          ease: Power2.easeInOut,
+          onComplete: () => {
+            loco.scroll.instance.scroll.y = y;
+            loco.scrollTo(selector, 0);
+            window.scroll.start();
+
+            if (onComplete) onComplete();
+          }
+        }
+      );
     }
   };
 });
@@ -35,7 +69,3 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
   if (loco) loco.update();
 });
-
-// $.delegate('.js-goto', (e, el) => {
-//   loco.scrollTo(el.dataset.target, 0);
-// });

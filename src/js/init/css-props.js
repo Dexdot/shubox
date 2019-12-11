@@ -14,3 +14,29 @@ window.addEventListener('DOMContentLoaded', () => {
   set();
 });
 window.addEventListener('resize', set);
+
+window.getComputedScaleXY = el => {
+  if (!window.getComputedStyle || !el) return false;
+
+  const style = getComputedStyle(el);
+  const transform =
+    style.transform || style.webkitTransform || style.mozTransform;
+
+  let mat = transform.match(/^matrix3d\((.+)\)$/);
+
+  if (mat) return parseFloat(mat[1].split(', ')[13]);
+
+  mat = transform.match(/^matrix\((.+)\)$/);
+
+  const data = {};
+
+  data.scale = mat ? parseFloat(mat[1].split(', ')[3]) : 0;
+
+  data.x = mat ? parseFloat(mat[1].split(', ')[4]) : 0;
+  data.y = mat ? parseFloat(mat[1].split(', ')[5]) : 0;
+
+  data.xPercent = data.x === 0 ? 0 : data.x / (el.offsetWidth / 100);
+  data.yPercent = data.y === 0 ? 0 : data.y / (el.offsetHeight / 100);
+
+  return data;
+};

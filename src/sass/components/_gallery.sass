@@ -30,7 +30,7 @@
   @media (max-width: 700px)
     width: 100%
     margin-right: 0
-    margin-bottom: 1.6empx
+    margin-bottom: 1.6em
 
 .gallery__text
   max-width: 40%
@@ -42,8 +42,11 @@
 
 .gallery-slider
   position: relative
-  height: 56.25vw
-  // height: 100vh
+  height: 100vh
+  // height: 56.25vw
+
+  @media (max-width: 1000px)
+    height: calc(100vh - 80px)
 
 .gallery-slider .slider-nav
   z-index: 1

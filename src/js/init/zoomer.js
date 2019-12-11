@@ -18,6 +18,13 @@ export default class Zoomer {
     this.DOM.btn = $.qs('.zoomer__btn');
     this.DOM.cover = $.qs('.zoomer__cover');
 
+    this.initialStyles = {};
+    this.initialStyles.scale = window.getComputedScaleXY(
+      this.DOM.scaleNode
+    ).scale;
+    this.initialStyles.x = window.getComputedScaleXY(this.DOM.imgNode).xPercent;
+    this.initialStyles.y = window.getComputedScaleXY(this.DOM.imgNode).yPercent;
+
     this.animated = false;
 
     this.init();
@@ -94,7 +101,7 @@ export default class Zoomer {
   skip(scrollTo = false) {
     window.scroll.start();
     if (scrollTo) {
-      window.loco.scrollTo('.gallery', window.innerWidth <= 1000 ? -80 : 0);
+      window.scroll.to('.gallery', window.innerWidth <= 1000 ? -80 : 0);
     }
     this.animated = true;
   }
@@ -208,25 +215,62 @@ export default class Zoomer {
     });
   }
 
-  intro() {
-    window.scroll.stop();
-    window.loco.scrollTo('.zoomer', window.innerWidth <= 1000 ? -80 : 0);
-
-    TweenMax.to(this.DOM.cover, 0.6, {
-      x: '0%',
-      ease: Power2.easeOut,
-      delay: 0.2,
-      onStart: () => {
-        this.animateZoom(() => {
-          this.DOM.section.classList.add('u-ovh');
-        });
-      }
+  zoomOut() {
+    TweenMax.to(this.DOM.scaleNode, 1, {
+      scale: this.initialStyles.scale,
+      ease: Power2.easeInOut
     });
 
-    TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
-      opacity: 1,
-      ease: Power2.easeOut,
-      delay: 0.4
+    TweenMax.to(this.DOM.imgNode, 1, {
+      x: `${this.initialStyles.x}%`,
+      y: `${this.initialStyles.y}%`,
+      ease: Power2.easeInOut
+    });
+  }
+
+  introIn() {
+    window.scroll.to('.zoomer', window.innerWidth <= 1000 ? -80 : 0, () => {
+      window.scroll.stop();
+
+      TweenMax.to(this.DOM.cover, 0.6, {
+        x: '0%',
+        ease: Power2.easeOut,
+        delay: 0.2,
+        onStart: () => {
+          this.animateZoom(() => {
+            this.DOM.section.classList.add('u-ovh');
+          });
+        }
+      });
+
+      TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
+        opacity: 1,
+        ease: Power2.easeOut,
+        delay: 0.4
+      });
+    });
+  }
+
+  introOut() {
+    window.scroll.to('.zoomer', 0, () => {
+      window.scroll.stop();
+
+      TweenMax.to(this.DOM.cover, 0.4, {
+        x: '100%',
+        ease: Power2.easeIn,
+        onComplete: () => {
+          this.DOM.section.classList.remove('u-ovh');
+          this.zoomOut();
+          window.scroll.to('.hero', 0, () => {
+            this.animated = false;
+          });
+        }
+      });
+
+      TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
+        opacity: 0,
+        ease: Power2.easeIn
+      });
     });
   }
 
@@ -235,27 +279,12 @@ export default class Zoomer {
 
     function onScroll({ scroll }) {
       if (scroll.y >= window.innerHeight * 0.6) {
-        self.intro();
+        self.introIn();
         window.loco.off('scroll', onScroll);
       }
     }
 
     window.loco.on('scroll', onScroll);
-    // this.observer = new IntersectionObserver(
-    //   items => {
-    //     items.forEach(({ isIntersecting, intersectionRatio }) => {
-    //       if (isIntersecting && intersectionRatio >= 0.8 && !this.animated) {
-    //         this.intro();
-    //         this.observer.unobserve(this.DOM.el);
-    //       }
-    //     });
-    //   },
-    //   {
-    //     threshold: [0, 0.05, 0.1, 0.25, 0.5, 0.75, 0.8, 0.9, 0.95, 1]
-    //   }
-    // );
-
-    // this.observer.observe(this.DOM.section);
   }
 }
 
