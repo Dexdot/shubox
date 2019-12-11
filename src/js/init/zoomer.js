@@ -1,5 +1,5 @@
 import { TweenMax, Power2 } from 'gsap';
-import VirtualScroll from 'virtual-scroll';
+import WheelIndicator from 'wheel-indicator';
 import Slider from '@/components/slider';
 
 const arrayMax = arr => arr.reduce((p, v) => (p > v ? p : v));
@@ -7,8 +7,7 @@ const arrayMax = arr => arr.reduce((p, v) => (p > v ? p : v));
 export default class Zoomer {
   constructor() {
     this.DOM = {};
-    this.DOM.el = $.qs('.zoomer__slider');
-    this.DOM.section = $.qs('.zoomer');
+    this.DOM.el = $.qs('.zoomer');
     this.DOM.scaleNode = $.qs('.zoomer__scale');
     this.DOM.imgNode = $.qs('.zoomer__img');
     this.DOM.slider = $.qs('.zoomer__slider');
@@ -25,13 +24,20 @@ export default class Zoomer {
     this.initialStyles.x = window.getComputedScaleXY(this.DOM.imgNode).xPercent;
     this.initialStyles.y = window.getComputedScaleXY(this.DOM.imgNode).yPercent;
 
-    this.animated = false;
+    this.sliderAnimating = false;
+    this.scrollAnimating = false;
+    this.introVisible = false;
+    this.onTop = true;
 
     this.init();
   }
 
   init() {
-    this.zoomer = new Slider(this.DOM.el);
+    this.zoomer = new Slider(this.DOM.slider);
+
+    this.DOM.el.addEventListener('scrollto:complete', () => {
+      this.introComplete();
+    });
 
     this.onUpdate();
     this.onResize();
@@ -50,6 +56,12 @@ export default class Zoomer {
 
     // Resize
     window.addEventListener('resize', this.onResize.bind(this));
+    window.addEventListener('keydown', e => {
+      if ([32, 38, 40].includes(e.keyCode)) {
+        e.preventDefault();
+        return false;
+      }
+    });
 
     $.delegate('.js-zoomer-prev', () => {
       this.prev();
@@ -62,57 +74,79 @@ export default class Zoomer {
     });
 
     this.observe();
-  }
 
-  createVS() {
-    this.vs = new VirtualScroll({
-      firefoxMultiplier: 50,
-      mouseMultiplier: 0.8,
-      touchMultiplier: 2
+    $.delegate('.js-scrollto[data-target=".zoomer"]', () => {
+      if (!this.scrollAnimating) this.introIn();
     });
 
-    this.vs.on(this.onVS.bind(this));
+    this.createWI();
   }
 
-  destroyVS() {
-    this.vs.off(this.onVS);
-    this.vs.destroy();
-  }
+  createWI() {
+    this.wi = new WheelIndicator({
+      callback: e => {
+        this.DOM.el.dispatchEvent(new CustomEvent('wi', { detail: e }));
+      }
+    });
 
-  onVS({ deltaY }) {
-    if (TweenMax.isTweening(this.DOM.imgNode)) return false;
+    if (!window.loco.isMobile) {
+      this.DOM.el.addEventListener('wi', ({ detail }) => {
+        const { direction } = detail;
+        if (!this.introVisible) return false;
 
-    if (deltaY > 0) {
-      this.prev();
-    } else {
-      this.next();
+        if (direction === 'up') {
+          this.prev();
+        } else if (direction === 'down') {
+          this.next();
+        }
+      });
     }
   }
 
   prev() {
-    if (this.zoomer.index !== 0) this.zoomer.prev();
+    if (this.zoomer.index !== 0 && !this.sliderAnimating) {
+      this.zoomer.prev();
+    }
   }
 
   next() {
-    if (this.zoomer.index !== this.zoomer.DOM.slides.length - 1)
+    if (
+      this.zoomer.index !== this.zoomer.DOM.slides.length - 1 &&
+      !this.sliderAnimating
+    ) {
       this.zoomer.next();
+    }
   }
 
-  skip(scrollTo = false) {
-    window.scroll.start();
+  skip = (scrollTo = false) => {
+    this.scrollAnimating = true;
+
     if (scrollTo) {
-      window.scroll.to('.gallery', window.innerWidth <= 1000 ? -80 : 0);
+      this.introVisible = false;
+      window.scroll.to('.gallery', window.innerWidth <= 1000 ? -80 : 0, () => {
+        this.scrollAnimating = false;
+      });
+    } else {
+      window.scroll.start();
+      this.introVisible = false;
+      this.scrollAnimating = false;
     }
-    this.animated = true;
-  }
+  };
 
   updateBegin() {
+    this.sliderAnimating = true;
     this.animateLine();
   }
 
   updateComplete() {
     this.onUpdate();
-    this.animateZoom();
+    this.animateZoom(() => {
+      // Stop intro on last slide
+      if (this.zoomer.index === this.zoomer.DOM.slides.length - 1) {
+        this.skip();
+      }
+      this.sliderAnimating = false;
+    });
   }
 
   animateLine = () => {
@@ -155,11 +189,6 @@ export default class Zoomer {
   onUpdate() {
     const { index, DOM } = this.zoomer;
 
-    // Stop intro on last slide
-    if (index === DOM.slides.length - 1 && !this.animated) {
-      this.skip();
-    }
-
     // Arrows
     this.DOM.firstNum.textContent = index + 1;
     this.DOM.lastNum.textContent = DOM.slides.length;
@@ -196,6 +225,22 @@ export default class Zoomer {
     this.DOM.slider.style.height = `${height}px`;
   }
 
+  setZoom() {
+    const { dataset } = this.zoomer.DOM.active;
+    const x = window.parseFloat(dataset.x);
+    const y = window.parseFloat(dataset.y);
+    const scale = window.parseFloat(dataset.scale);
+
+    TweenMax.set(this.DOM.scaleNode, {
+      scale
+    });
+
+    TweenMax.set(this.DOM.imgNode, {
+      x: `${x}%`,
+      y: `${y}%`
+    });
+  }
+
   animateZoom(onComplete) {
     const { dataset } = this.zoomer.DOM.active;
     const x = window.parseFloat(dataset.x);
@@ -216,12 +261,12 @@ export default class Zoomer {
   }
 
   zoomOut() {
-    TweenMax.to(this.DOM.scaleNode, 1, {
+    TweenMax.to(this.DOM.scaleNode, 0.8, {
       scale: this.initialStyles.scale,
       ease: Power2.easeInOut
     });
 
-    TweenMax.to(this.DOM.imgNode, 1, {
+    TweenMax.to(this.DOM.imgNode, 0.8, {
       x: `${this.initialStyles.x}%`,
       y: `${this.initialStyles.y}%`,
       ease: Power2.easeInOut
@@ -229,6 +274,8 @@ export default class Zoomer {
   }
 
   introIn() {
+    this.scrollAnimating = true;
+
     window.scroll.to('.zoomer', window.innerWidth <= 1000 ? -80 : 0, () => {
       window.scroll.stop();
 
@@ -238,7 +285,10 @@ export default class Zoomer {
         delay: 0.2,
         onStart: () => {
           this.animateZoom(() => {
-            this.DOM.section.classList.add('u-ovh');
+            this.DOM.el.classList.add('u-ovh');
+            this.scrollAnimating = false;
+            this.onTop = false;
+            this.introVisible = true;
           });
         }
       });
@@ -252,35 +302,71 @@ export default class Zoomer {
   }
 
   introOut() {
-    window.scroll.to('.zoomer', 0, () => {
-      window.scroll.stop();
+    this.scrollAnimating = true;
+    this.introVisible = false;
 
-      TweenMax.to(this.DOM.cover, 0.4, {
-        x: '100%',
-        ease: Power2.easeIn,
-        onComplete: () => {
-          this.DOM.section.classList.remove('u-ovh');
-          this.zoomOut();
-          window.scroll.to('.hero', 0, () => {
-            this.animated = false;
-          });
-        }
-      });
+    this.DOM.el.classList.remove('u-ovh');
+    this.zoomOut();
 
-      TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
-        opacity: 0,
-        ease: Power2.easeIn
-      });
+    TweenMax.to(this.DOM.cover, 0.4, {
+      x: '100%',
+      ease: Power2.easeIn,
+      onComplete: () => {
+        this.scrollAnimating = false;
+        this.onTop = true;
+      }
     });
+
+    TweenMax.to([this.DOM.btn, this.DOM.box], 0.4, {
+      opacity: 0,
+      ease: Power2.easeIn
+    });
+  }
+
+  introComplete() {
+    this.scrollAnimating = true;
+
+    TweenMax.set(this.DOM.cover, {
+      x: '0%'
+    });
+
+    TweenMax.set([this.DOM.btn, this.DOM.box], {
+      opacity: 1
+    });
+
+    this.setZoom();
+    this.DOM.el.classList.add('u-ovh');
+
+    this.scrollAnimating = false;
+    this.onTop = false;
+    this.introVisible = false;
   }
 
   observe() {
     const self = this;
+    let lastY = window.loco.scroll.instance.scroll.y;
 
-    function onScroll({ scroll }) {
-      if (scroll.y >= window.innerHeight * 0.6) {
+    function onScroll({ scroll, direction }) {
+      if (self.scrollAnimating) return false;
+
+      let dir;
+      if (direction) {
+        dir = direction;
+      } else {
+        dir = scroll.y > lastY ? 'down' : 'up';
+      }
+
+      lastY = scroll.y;
+
+      const edge = window.parseInt(window.innerHeight * 0.6);
+      const y = window.parseInt(scroll.y);
+
+      if (dir === 'up' && y <= edge + 100 && !self.onTop) {
+        self.introOut();
+      }
+
+      if (dir === 'down' && y >= edge - 100 && y < edge && self.onTop) {
         self.introIn();
-        window.loco.off('scroll', onScroll);
       }
     }
 
