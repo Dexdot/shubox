@@ -95,7 +95,6 @@ export default class Zoomer {
         if (!this.introVisible) return false;
 
         if (direction === 'up') {
-          // this.prev();
           if (this.zoomer.index !== 0 && !this.sliderAnimating) {
             this.prev();
           } else if (this.zoomer.index === 0 && !this.sliderAnimating) {
@@ -325,6 +324,8 @@ export default class Zoomer {
       onComplete: () => {
         this.scrollAnimating = false;
         this.onTop = true;
+        this.zoomer.updateNoEvent(0);
+        this.onUpdate();
       }
     });
 
@@ -367,20 +368,19 @@ export default class Zoomer {
         dir = scroll.y > lastY ? 'down' : 'up';
       }
 
-      // Header
-      if (dir === 'up') $.qs('.header').classList.remove('hidden');
-      if (dir === 'down') $.qs('.header').classList.add('hidden');
-
       lastY = scroll.y;
 
       const edge = window.parseInt(window.innerHeight * 0.6);
       const y = window.parseInt(scroll.y);
 
+      // Header
+      if (dir === 'up') $.qs('.header').classList.remove('hidden');
+      if (dir === 'down' && y > 80) $.qs('.header').classList.add('hidden');
+
       if (dir === 'up' && y <= edge + 100 && !self.onTop) {
         self.introOut();
       }
 
-      // if (dir === 'down' && y >= edge - 200 && y < edge && self.onTop) {
       if (dir === 'down' && y >= 80 && self.onTop) {
         self.introIn();
       }
@@ -391,5 +391,6 @@ export default class Zoomer {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  const zoomer = new Zoomer();
+  // const zoomer = new Zoomer();
+  window.zoomer = new Zoomer();
 });

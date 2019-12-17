@@ -23,6 +23,21 @@ export default class Slider {
     };
   }
 
+  updateNoEvent(i) {
+    // Hide slides
+    this.hideSlides();
+
+    // Set new index and active slide
+    this.index = i;
+    this.DOM.active = this.DOM.slides[this.index];
+
+    // Show active slide
+    this.showSlide();
+
+    // Exit
+    return true;
+  }
+
   update(action, i) {
     if (Number.isInteger(i)) {
       // Dispatch update:begin
