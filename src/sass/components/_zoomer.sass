@@ -95,10 +95,10 @@
   background: #fff
   opacity: 0
 
-.zoomer__btn--mob
-  margin-top: 40px
-  @media (min-width: 1001px)
-    display: none
+// .zoomer__btn--mob
+//   margin-top: 40px
+//   @media (min-width: 1001px)
+//     display: none
 
 .zoomer__box
   width: 496px
@@ -186,7 +186,7 @@
   line-height: 1.2
   margin-bottom: 16px
 
-.zoomer__slide p
+.zoomer__slide p:not(:last-child)
   margin-bottom: 40px
 
 .zoomer__box .slider-nav
@@ -211,11 +211,22 @@
       border-radius: 50%
       border: 1px solid rgba(#000, 0.3)
 
+
+      &--prev
+        &.active
+          border: 1px solid $acc
+
+
+      &--next
+        &.active
+          background: $acc
+          border: 0
+
+          .i-chevron
+            stroke: #fff
+
       &:first-child
         margin-right: 24px
-
-      &.active
-        border: 1px solid $acc
 
       .i-chevron
         width: 16px

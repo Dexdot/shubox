@@ -14,7 +14,12 @@ body.menu-active
   right: 0
 
   width: 100%
-  transition: background $trs
+  transition: background $trs, transform $trs
+
+  &.hidden
+    @media (max-width: 1000px)
+      transform: translateY(-100%)
+    
 
 .header__inner
   display: flex

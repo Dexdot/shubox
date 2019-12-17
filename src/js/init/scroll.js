@@ -21,8 +21,8 @@ window.addEventListener('DOMContentLoaded', () => {
     getDirection: true
   });
 
-  loco.on('scroll', ({ scroll }) => {
-    if (scroll.y > 80) {
+  loco.on('scroll', e => {
+    if (e.scroll.y > 80) {
       $.qs('.header').classList.add('header--primary');
     } else {
       $.qs('.header').classList.remove('header--primary');
@@ -33,35 +33,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
   window.scroll = {
     start: () => {
-      // if (loco.isMobile && !loco.smoothMobile) {
-      //   defaultScroll.enable();
-      // } else {
-      //   scrollbar.show();
-      //   loco.start();
-      // }
       window.addEventListener('keydown', loco.scroll.checkKey, false);
       scrollbar.show();
       loco.start();
     },
     stop: () => {
-      // if (loco.isMobile && !loco.smoothMobile) {
-      //   defaultScroll.disable();
-      // } else {
-      //   scrollbar.hide();
-      //   loco.stop();
-      // }
       window.removeEventListener('keydown', loco.scroll.checkKey, false);
       scrollbar.hide();
       loco.stop();
     },
-    to: (selector, offset = 0, onComplete) => {
+    to: (selector, offset = 0, onComplete, dontEnable = false) => {
       window.scroll.stop();
 
       const y = $.qs(selector).offsetTop + offset;
 
       if (loco.isMobile && !loco.smoothMobile) {
         loco.scrollTo(selector, 0);
-        window.scroll.start();
+        if (!dontEnable) window.scroll.start();
 
         if (onComplete) onComplete();
       } else {
@@ -77,7 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
             onComplete: () => {
               loco.scroll.instance.scroll.y = y;
               loco.scrollTo(selector, 0);
-              window.scroll.start();
+              if (!dontEnable) window.scroll.start();
 
               if (onComplete) onComplete();
             }
