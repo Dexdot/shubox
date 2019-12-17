@@ -1,5 +1,6 @@
 import Slider from '@/components/slider';
 
+// Gallery
 window.addEventListener('DOMContentLoaded', () => {
   const onUpdate = ({ index, DOM }) => {
     // Dots
@@ -48,4 +49,9 @@ window.addEventListener('DOMContentLoaded', () => {
   $.delegate('.js-gallery-dot', (e, btn) => {
     gallery.update('', $.nodeIndex(btn.parentElement));
   });
+});
+
+// 16 цветов
+window.addEventListener('DOMContentLoaded', () => {
+  const imagesSlider = new Slider($.qs('.zoomer__img'));
 });

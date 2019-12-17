@@ -79,7 +79,7 @@ export default class Zoomer {
       if (!this.scrollAnimating) this.introIn();
     });
 
-    this.createWI();
+    // this.createWI();
   }
 
   createWI() {
@@ -127,7 +127,7 @@ export default class Zoomer {
         this.scrollAnimating = false;
       });
     } else {
-      window.scroll.start();
+      // window.scroll.start();
       this.introVisible = false;
       this.scrollAnimating = false;
     }
@@ -145,8 +145,9 @@ export default class Zoomer {
       if (this.zoomer.index === this.zoomer.DOM.slides.length - 1) {
         this.skip();
       }
-      this.sliderAnimating = false;
+      // this.sliderAnimating = false;
     });
+    this.sliderAnimating = false;
   }
 
   animateLine = () => {
@@ -276,36 +277,59 @@ export default class Zoomer {
   introIn() {
     this.scrollAnimating = true;
 
-    window.scroll.to('.zoomer', window.innerWidth <= 1000 ? -80 : 0, () => {
-      window.scroll.stop();
+    this.animateZoom(() => {
+      // this.DOM.el.classList.add('u-ovh');
+      this.scrollAnimating = false;
+      this.onTop = false;
+      this.introVisible = true;
+    });
 
-      TweenMax.to(this.DOM.cover, 0.6, {
-        x: '0%',
-        ease: Power2.easeOut,
-        delay: 0.2,
-        onStart: () => {
-          this.animateZoom(() => {
-            this.DOM.el.classList.add('u-ovh');
-            this.scrollAnimating = false;
-            this.onTop = false;
-            this.introVisible = true;
-          });
-        }
-      });
+    TweenMax.to(this.DOM.cover, 0.4, {
+      x: '0%',
+      ease: Power2.easeOut
+    });
 
-      TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
-        opacity: 1,
-        ease: Power2.easeOut,
-        delay: 0.4
-      });
+    TweenMax.to([this.DOM.btn, this.DOM.box], 0.4, {
+      opacity: 1,
+      ease: Power2.easeOut
     });
   }
+
+  // introIn() {
+  //   this.scrollAnimating = true;
+
+  //   window.scroll.to('.zoomer', window.innerWidth <= 1000 ? -80 : 0, () => {
+  //     window.scroll.stop();
+
+  //     TweenMax.to(this.DOM.cover, 0.6, {
+  //       x: '0%',
+  //       ease: Power2.easeOut,
+  //       delay: 0.2,
+  //       onStart: () => {
+  //         this.animateZoom(() => {
+  //           this.DOM.el.classList.add('u-ovh');
+  //           this.scrollAnimating = false;
+  //           this.onTop = false;
+  //           this.introVisible = true;
+
+  //           window.scroll.start();
+  //         });
+  //       }
+  //     });
+
+  //     TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
+  //       opacity: 1,
+  //       ease: Power2.easeOut,
+  //       delay: 0.4
+  //     });
+  //   });
+  // }
 
   introOut() {
     this.scrollAnimating = true;
     this.introVisible = false;
 
-    this.DOM.el.classList.remove('u-ovh');
+    // this.DOM.el.classList.remove('u-ovh');
     this.zoomOut();
 
     TweenMax.to(this.DOM.cover, 0.4, {
@@ -324,7 +348,7 @@ export default class Zoomer {
   }
 
   introComplete() {
-    this.scrollAnimating = true;
+    // this.scrollAnimating = true;
 
     TweenMax.set(this.DOM.cover, {
       x: '0%'
@@ -335,9 +359,9 @@ export default class Zoomer {
     });
 
     this.setZoom();
-    this.DOM.el.classList.add('u-ovh');
+    // this.DOM.el.classList.add('u-ovh');
 
-    this.scrollAnimating = false;
+    // this.scrollAnimating = false;
     this.onTop = false;
     this.introVisible = false;
   }
@@ -361,11 +385,13 @@ export default class Zoomer {
       const edge = window.parseInt(window.innerHeight * 0.6);
       const y = window.parseInt(scroll.y);
 
-      if (dir === 'up' && y <= edge + 100 && !self.onTop) {
+      // if (dir === 'up' && y <= edge + 100 && !self.onTop) {
+      if (dir === 'up' && y <= edge - 200 && !self.onTop) {
         self.introOut();
       }
 
-      if (dir === 'down' && y >= edge - 100 && y < edge && self.onTop) {
+      // if (dir === 'down' && y >= edge - 100 && y < edge && self.onTop) {
+      if (dir === 'down' && y >= edge - 50 && y < edge && self.onTop) {
         self.introIn();
       }
     }
