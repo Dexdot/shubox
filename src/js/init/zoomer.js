@@ -95,7 +95,13 @@ export default class Zoomer {
         if (!this.introVisible) return false;
 
         if (direction === 'up') {
-          this.prev();
+          // this.prev();
+          if (this.zoomer.index !== 0 && !this.sliderAnimating) {
+            this.prev();
+          } else if (this.zoomer.index === 0 && !this.sliderAnimating) {
+            this.introOut();
+            window.scroll.to('.hero', 0);
+          }
         } else if (direction === 'down') {
           this.next();
         }
@@ -285,7 +291,7 @@ export default class Zoomer {
         delay: 0.2,
         onStart: () => {
           this.animateZoom(() => {
-            this.DOM.el.classList.add('u-ovh');
+            // this.DOM.el.classList.add('u-ovh');
             this.scrollAnimating = false;
             this.onTop = false;
             this.introVisible = true;
@@ -305,7 +311,7 @@ export default class Zoomer {
     this.scrollAnimating = true;
     this.introVisible = false;
 
-    this.DOM.el.classList.remove('u-ovh');
+    // this.DOM.el.classList.remove('u-ovh');
     this.zoomOut();
 
     TweenMax.to(this.DOM.cover, 0.4, {
@@ -335,7 +341,7 @@ export default class Zoomer {
     });
 
     this.setZoom();
-    this.DOM.el.classList.add('u-ovh');
+    // this.DOM.el.classList.add('u-ovh');
 
     this.scrollAnimating = false;
     this.onTop = false;
@@ -365,7 +371,7 @@ export default class Zoomer {
         self.introOut();
       }
 
-      if (dir === 'down' && y >= edge - 100 && y < edge && self.onTop) {
+      if (dir === 'down' && y >= edge - 200 && y < edge && self.onTop) {
         self.introIn();
       }
     }
