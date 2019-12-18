@@ -53,7 +53,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
           if (onComplete) onComplete();
-        }, 200);
+        }, 400);
       } else {
         TweenMax.fromTo(
           '#js-scroll',
