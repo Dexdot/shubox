@@ -51,7 +51,9 @@ window.addEventListener('DOMContentLoaded', () => {
         loco.scrollTo(selector, 0);
         if (!dontEnable) window.scroll.start();
 
-        if (onComplete) onComplete();
+        setTimeout(() => {
+          if (onComplete) onComplete();
+        }, 200);
       } else {
         TweenMax.fromTo(
           '#js-scroll',
@@ -81,14 +83,18 @@ $.delegate('.js-scrollto', (e, el) => {
   const { dataset } = el;
 
   // WARNING: Сильная завязка к конкретному элементу .zoomer
-  if (dataset.target !== '.zoomer')
+  if (dataset.target !== '.zoomer') {
+    window.zoomer.scrollAnimating = true;
+
     window.scroll.to(
       dataset.target,
       window.innerWidth <= 1000 ? -80 : 0,
       () => {
+        window.zoomer.scrollAnimating = false;
         $.qs('.zoomer').dispatchEvent(new Event('scrollto:complete'));
       }
     );
+  }
 
   if ($.qs('.menu').classList.contains('active')) {
     $.qs('.burger').click();

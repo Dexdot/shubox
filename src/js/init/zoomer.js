@@ -288,7 +288,7 @@ export default class Zoomer {
       true
     );
 
-    window.scroll.stop();
+    // window.scroll.stop();
 
     TweenMax.to(this.DOM.cover, 0.6, {
       x: '0%',
@@ -296,7 +296,7 @@ export default class Zoomer {
       delay: 0.2,
       onStart: () => {
         this.animateZoom(() => {
-          // this.DOM.el.classList.add('u-ovh');
+          // window.scroll.start();
           this.scrollAnimating = false;
           this.onTop = false;
           this.introVisible = true;
@@ -315,7 +315,6 @@ export default class Zoomer {
     this.scrollAnimating = true;
     this.introVisible = false;
 
-    // this.DOM.el.classList.remove('u-ovh');
     this.zoomOut();
 
     TweenMax.to(this.DOM.cover, 0.4, {
@@ -347,7 +346,6 @@ export default class Zoomer {
     });
 
     this.setZoom();
-    // this.DOM.el.classList.add('u-ovh');
 
     this.scrollAnimating = false;
     this.onTop = false;
@@ -391,6 +389,5 @@ export default class Zoomer {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  // const zoomer = new Zoomer();
   window.zoomer = new Zoomer();
 });

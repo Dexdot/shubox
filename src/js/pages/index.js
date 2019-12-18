@@ -5,3 +5,4 @@ import '@/init/scroll';
 import '@/init/burger';
 import '@/init/slider';
 import '@/init/zoomer';
+// import '@/init/modal';
