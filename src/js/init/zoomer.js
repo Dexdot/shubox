@@ -76,7 +76,9 @@ export default class Zoomer {
     this.observe();
 
     $.delegate('.js-scrollto[data-target=".zoomer"]', () => {
-      if (!this.scrollAnimating) this.introIn();
+      if (!this.scrollAnimating) {
+        this.introIn();
+      }
     });
 
     this.createWI();
@@ -281,59 +283,31 @@ export default class Zoomer {
   introIn() {
     this.scrollAnimating = true;
 
-    if (window.loco.isMobile && !window.loco.smoothMobile) {
-      window.scroll.to(
-        '.zoomer',
-        window.innerWidth <= 1000 ? -80 : 0,
-        () => {
-          TweenMax.to(this.DOM.cover, 0.6, {
-            x: '0%',
-            ease: Power2.easeOut,
-            delay: 0.2,
-            onStart: () => {
-              this.animateZoom(() => {
-                this.scrollAnimating = false;
-                this.onTop = false;
-                this.introVisible = true;
-              });
-            }
-          });
+    window.scroll.to(
+      '.zoomer',
+      window.innerWidth <= 1000 ? -80 : 0,
+      null,
+      true
+    );
 
-          TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
-            opacity: 1,
-            ease: Power2.easeOut,
-            delay: 0.4
-          });
-        },
-        true
-      );
-    } else {
-      window.scroll.to(
-        '.zoomer',
-        window.innerWidth <= 1000 ? -80 : 0,
-        null,
-        true
-      );
+    TweenMax.to(this.DOM.cover, 0.6, {
+      x: '0%',
+      ease: Power2.easeOut,
+      delay: 0.2,
+      onStart: () => {
+        this.animateZoom(() => {
+          this.scrollAnimating = false;
+          this.onTop = false;
+          this.introVisible = true;
+        });
+      }
+    });
 
-      TweenMax.to(this.DOM.cover, 0.6, {
-        x: '0%',
-        ease: Power2.easeOut,
-        delay: 0.2,
-        onStart: () => {
-          this.animateZoom(() => {
-            this.scrollAnimating = false;
-            this.onTop = false;
-            this.introVisible = true;
-          });
-        }
-      });
-
-      TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
-        opacity: 1,
-        ease: Power2.easeOut,
-        delay: 0.4
-      });
-    }
+    TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
+      opacity: 1,
+      ease: Power2.easeOut,
+      delay: 0.4
+    });
   }
 
   introOut() {
@@ -391,7 +365,7 @@ export default class Zoomer {
         dir = scroll.y > lastY ? 'down' : 'up';
       }
 
-      lastY = scroll.y;
+      if (scroll.y > 0) lastY = scroll.y;
 
       const edge = window.parseInt(window.innerHeight * 0.6);
       const y = window.parseInt(scroll.y);
@@ -400,6 +374,7 @@ export default class Zoomer {
       if (dir === 'up') $.qs('.header').classList.remove('hidden');
       if (dir === 'down' && y > 80) $.qs('.header').classList.add('hidden');
 
+      // Intro I/O
       if (dir === 'up' && y <= edge + 100 && !self.onTop) {
         self.introOut();
       }
