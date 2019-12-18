@@ -281,34 +281,59 @@ export default class Zoomer {
   introIn() {
     this.scrollAnimating = true;
 
-    window.scroll.to(
-      '.zoomer',
-      window.innerWidth <= 1000 ? -80 : 0,
-      null,
-      true
-    );
+    if (window.loco.isMobile && !window.loco.smoothMobile) {
+      window.scroll.to(
+        '.zoomer',
+        window.innerWidth <= 1000 ? -80 : 0,
+        () => {
+          TweenMax.to(this.DOM.cover, 0.6, {
+            x: '0%',
+            ease: Power2.easeOut,
+            delay: 0.2,
+            onStart: () => {
+              this.animateZoom(() => {
+                this.scrollAnimating = false;
+                this.onTop = false;
+                this.introVisible = true;
+              });
+            }
+          });
 
-    // window.scroll.stop();
+          TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
+            opacity: 1,
+            ease: Power2.easeOut,
+            delay: 0.4
+          });
+        },
+        true
+      );
+    } else {
+      window.scroll.to(
+        '.zoomer',
+        window.innerWidth <= 1000 ? -80 : 0,
+        null,
+        true
+      );
 
-    TweenMax.to(this.DOM.cover, 0.6, {
-      x: '0%',
-      ease: Power2.easeOut,
-      delay: 0.2,
-      onStart: () => {
-        this.animateZoom(() => {
-          // window.scroll.start();
-          this.scrollAnimating = false;
-          this.onTop = false;
-          this.introVisible = true;
-        });
-      }
-    });
+      TweenMax.to(this.DOM.cover, 0.6, {
+        x: '0%',
+        ease: Power2.easeOut,
+        delay: 0.2,
+        onStart: () => {
+          this.animateZoom(() => {
+            this.scrollAnimating = false;
+            this.onTop = false;
+            this.introVisible = true;
+          });
+        }
+      });
 
-    TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
-      opacity: 1,
-      ease: Power2.easeOut,
-      delay: 0.4
-    });
+      TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
+        opacity: 1,
+        ease: Power2.easeOut,
+        delay: 0.4
+      });
+    }
   }
 
   introOut() {
