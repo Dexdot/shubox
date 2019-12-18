@@ -76,7 +76,7 @@ export default class Zoomer {
     this.observe();
 
     $.delegate('.js-scrollto[data-target=".zoomer"]', () => {
-      if (!this.scrollAnimating) {
+      if (!this.scrollAnimating && !window.loco.isMobile) {
         this.introIn();
       }
     });
@@ -283,31 +283,49 @@ export default class Zoomer {
   introIn() {
     this.scrollAnimating = true;
 
-    window.scroll.to(
-      '.zoomer',
-      window.innerWidth <= 1000 ? -80 : 0,
-      null,
-      true
-    );
+    if (!window.loco.isMobile) {
+      window.scroll.to(
+        '.zoomer',
+        window.innerWidth <= 1000 ? -80 : 0,
+        null,
+        true
+      );
 
-    TweenMax.to(this.DOM.cover, 0.6, {
-      x: '0%',
-      ease: Power2.easeOut,
-      delay: 0.2,
-      onStart: () => {
-        this.animateZoom(() => {
+      TweenMax.to(this.DOM.cover, 0.6, {
+        x: '0%',
+        ease: Power2.easeOut,
+        delay: 0.2,
+        onStart: () => {
+          this.animateZoom(() => {
+            this.scrollAnimating = false;
+            this.onTop = false;
+            this.introVisible = true;
+          });
+        }
+      });
+
+      TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
+        opacity: 1,
+        ease: Power2.easeOut,
+        delay: 0.4
+      });
+    } else {
+      TweenMax.to(this.DOM.cover, 0.6, {
+        x: '0%',
+        ease: Power2.easeOut,
+        onComplete: () => {
           this.scrollAnimating = false;
           this.onTop = false;
           this.introVisible = true;
-        });
-      }
-    });
+        }
+      });
+      this.animateZoom();
 
-    TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
-      opacity: 1,
-      ease: Power2.easeOut,
-      delay: 0.4
-    });
+      TweenMax.to([this.DOM.btn, this.DOM.box], 0.6, {
+        opacity: 1,
+        ease: Power2.easeOut
+      });
+    }
   }
 
   introOut() {
@@ -356,7 +374,7 @@ export default class Zoomer {
     let lastY = window.loco.scroll.instance.scroll.y;
 
     function onScroll({ scroll, direction }) {
-      if (self.scrollAnimating) return false;
+      if (self.scrollAnimating || scroll.y < 0) return false;
 
       let dir;
       if (direction) {
@@ -374,12 +392,20 @@ export default class Zoomer {
       if (dir === 'up') $.qs('.header').classList.remove('hidden');
       if (dir === 'down' && y > 80) $.qs('.header').classList.add('hidden');
 
+      const upCondition = window.loco.isMobile
+        ? dir === 'up' && y <= edge - 150 && !self.onTop
+        : dir === 'up' && y <= edge + 100 && !self.onTop;
+
+      const downCondition = window.loco.isMobile
+        ? dir === 'down' && y >= edge - 100 && y <= edge + 100 && self.onTop
+        : dir === 'down' && y >= 80 && self.onTop;
+
       // Intro I/O
-      if (dir === 'up' && y <= edge + 100 && !self.onTop) {
+      if (upCondition) {
         self.introOut();
       }
 
-      if (dir === 'down' && y >= 80 && self.onTop) {
+      if (downCondition) {
         self.introIn();
       }
     }

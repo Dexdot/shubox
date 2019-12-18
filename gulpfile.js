@@ -88,6 +88,7 @@ gulp.task('js-min', () =>
     .pipe(plumber())
     .pipe(named())
     .pipe(webpackStream(webpackConfig.prod, webpack))
+    // .pipe(webpackStream(webpackConfig.dev, webpack))
     .pipe(gulp.dest(`./${src.js}`))
     .pipe(browserSync.reload({ stream: true }))
 );

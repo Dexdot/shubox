@@ -83,6 +83,7 @@ $.delegate('.js-scrollto', (e, el) => {
   const { dataset } = el;
 
   // WARNING: Сильная завязка к конкретному элементу .zoomer
+
   if (dataset.target !== '.zoomer') {
     window.zoomer.scrollAnimating = true;
 
@@ -92,6 +93,16 @@ $.delegate('.js-scrollto', (e, el) => {
       () => {
         window.zoomer.scrollAnimating = false;
         $.qs('.zoomer').dispatchEvent(new Event('scrollto:complete'));
+      }
+    );
+  } else if (dataset.target === '.zoomer' && loco.isMobile) {
+    window.zoomer.scrollAnimating = true;
+
+    window.scroll.to(
+      dataset.target,
+      window.innerWidth <= 1000 ? -80 : 0,
+      () => {
+        window.zoomer.scrollAnimating = false;
       }
     );
   }
