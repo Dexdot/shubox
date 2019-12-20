@@ -371,7 +371,8 @@ export default class Zoomer {
 
   observe() {
     const self = this;
-    let lastY = window.loco.scroll.instance.scroll.y;
+    // let lastY = window.loco.scroll.instance.scroll.y;
+    let lastY = 0;
 
     function onScroll({ scroll, direction }) {
       if (self.scrollAnimating || scroll.y < 0) return false;
