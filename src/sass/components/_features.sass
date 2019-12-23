@@ -50,6 +50,7 @@
 
   @media (max-width: 800px)
     padding: 56px $unit
+    padding-bottom: 16px
 
   @media (min-width: 801px)
     max-width: 40.28vw
@@ -58,7 +59,13 @@
 .feature__text p:not(:last-child)
   margin-bottom: 2.5em
 
+  @media (max-width: 800px)
+    margin-bottom: 24px
+
 .feature__title
   +mont(m)
   line-height: 1
   margin-bottom: 0.85em
+
+  @media (max-width: 800px)
+    margin-bottom: 16px
