@@ -3,6 +3,7 @@
 
   @media (min-width: 501px)
     min-height: 60vh
+
   @media (max-width: 500px)
     padding-bottom: 16px
 
@@ -29,8 +30,24 @@
   @media (max-width: 500px)
     max-width: 100%
     padding-right: $unit
-    padding-top: 17.4vh
+    // padding-top: 17.4vh
+    padding-top: 88px
 
 .hero__title
   line-height: 1.21
   margin-bottom: 16px
+
+  @media (max-width: 500px)
+    font-size: 24px
+    margin-bottom: 0
+
+  span:first-child
+    @media (max-width: 500px)
+      display: none
+  span:last-child
+    @media (min-width: 501px)
+      display: none
+
+.hero .link
+  @media (max-width: 500px)
+    display: none
