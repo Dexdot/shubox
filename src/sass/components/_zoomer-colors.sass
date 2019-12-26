@@ -1,0 +1,112 @@
+.zoomer-colors
+  display: flex
+
+  z-index: 1
+  position: absolute
+  left: $unit
+
+  transition: $trs
+  &.hidden
+    opacity: 0
+    pointer-events: none
+  
+  @media (min-width: 1001px)
+    bottom: $unit
+
+  @media (max-width: 1000px)
+    top: 4vh
+
+.zoomer-colors__inner:first-child
+  position: relative
+  padding-right: 40px
+  margin-right: 40px
+
+  @media (max-width: 1000px)
+    padding-right: 24px
+    margin-right: 24px
+
+  &::before
+    content: ''
+    position: absolute
+    bottom: 0
+    right: 0
+
+    width: 1px
+    height: 64px
+    background: rgba(#000, 0.1)
+
+    @media (max-width: 1000px)
+      height: 40px
+
+.zoomer-colors span
+  display: block
+  margin-bottom: 8px
+
+  +norms
+  color: rgba($black, 0.7)
+
+  @media (max-width: 1000px)
+    font-size: 14px
+
+.zoomer-colors ul
+  display: flex
+  align-items: center
+  margin-left: -16px
+
+  @media (max-width: 1000px)
+    margin-left: -8px
+
+.zoomer-colors li
+  min-width: 32px
+  width: 32px
+  height: 32px
+  margin-left: 16px
+
+  @media (max-width: 1000px)
+    min-width: 24px
+    width: 24px
+    height: 24px
+    margin-left: 8px
+
+.zoomer-colors button
+  width: 32px
+  height: 32px
+
+  border-radius: 50%
+  background: red
+  transition: $trs
+
+  @media (max-width: 1000px)
+    width: 24px
+    height: 24px
+
+
+  &:hover
+    transform: scale(1.1)
+
+  &.active
+    border: 1px solid #545454
+
+.zoomer-colors [data-color="white"]
+  background: #FFFFFF
+
+.zoomer-colors [data-color="grey"]
+  background: #B5B5B5
+
+.zoomer-colors [data-color="beige"]
+  background: #E6D7C6
+
+.zoomer-colors [data-color="brown"]
+  background: #847873
+
+.zoomer-colors [data-color="yellow"]
+  background: #FFD646
+
+.zoomer-colors [data-color="blue"]
+  background: #ABC0DF
+
+.zoomer-colors [data-color="red"]
+  background: #DB443A
+
+.zoomer-colors [data-color="green"]
+  background: #31755E

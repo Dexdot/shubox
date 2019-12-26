@@ -9,20 +9,26 @@ export default class Zoomer {
     this.DOM = {};
     this.DOM.el = $.qs('.zoomer');
     this.DOM.scaleNode = $.qs('.zoomer__scale');
-    this.DOM.imgNode = $.qs('.zoomer__img');
+    this.DOM.imgParent = $.qs('.zoomer__img');
+    this.DOM.img = $.qs('.zoomer__img img');
     this.DOM.slider = $.qs('.zoomer__slider');
     this.DOM.firstNum = $.qs('.zoomer__counter span:first-child');
     this.DOM.lastNum = $.qs('.zoomer__counter span:last-child');
     this.DOM.box = $.qs('.zoomer__box');
     this.DOM.btn = $.qs('.zoomer__btn');
     this.DOM.cover = $.qs('.zoomer__cover');
+    this.DOM.colorsList = $.qs('.zoomer-colors');
 
     this.initialStyles = {};
     this.initialStyles.scale = window.getComputedScaleXY(
       this.DOM.scaleNode
     ).scale;
-    this.initialStyles.x = window.getComputedScaleXY(this.DOM.imgNode).xPercent;
-    this.initialStyles.y = window.getComputedScaleXY(this.DOM.imgNode).yPercent;
+    this.initialStyles.x = window.getComputedScaleXY(
+      this.DOM.imgParent
+    ).xPercent;
+    this.initialStyles.y = window.getComputedScaleXY(
+      this.DOM.imgParent
+    ).yPercent;
 
     this.sliderAnimating = false;
     this.scrollAnimating = false;
@@ -71,6 +77,27 @@ export default class Zoomer {
     });
     $.delegate('.js-zoomer-skip', () => {
       this.skip(true);
+    });
+
+    // Color change
+    this.originalImgUrl = this.DOM.img.src;
+    $.delegate('[data-color]', (e, el) => {
+      // Parent
+      const parent = el.closest('.zoomer-colors__inner');
+
+      // Active class change
+      $.qsa('[data-color]', parent).forEach(color => {
+        color.classList.remove('active');
+      });
+      el.classList.add('active');
+
+      // Set url by active colors
+      const outerColor = $.qs('.zoomer-colors__inner:first-child .active')
+        .dataset.color;
+      const innerColor = $.qs('.zoomer-colors__inner:last-child .active')
+        .dataset.color;
+      const activeImgUrl = `/img/colors/${outerColor}-${innerColor}.jpg`;
+      this.DOM.img.src = activeImgUrl;
     });
 
     this.observe();
@@ -223,6 +250,13 @@ export default class Zoomer {
       });
       this.DOM.lastNum.classList.add('active');
     }
+
+    // Hide / show colors
+    if (index === 1) {
+      this.DOM.colorsList.classList.remove('hidden');
+    } else {
+      this.DOM.colorsList.classList.add('hidden');
+    }
   }
 
   onResize() {
@@ -242,7 +276,7 @@ export default class Zoomer {
       scale
     });
 
-    TweenMax.set(this.DOM.imgNode, {
+    TweenMax.set(this.DOM.imgParent, {
       x: `${x}%`,
       y: `${y}%`
     });
@@ -259,7 +293,7 @@ export default class Zoomer {
       ease: Power2.easeInOut
     });
 
-    TweenMax.to(this.DOM.imgNode, 0.8, {
+    TweenMax.to(this.DOM.imgParent, 0.8, {
       x: `${x}%`,
       y: `${y}%`,
       ease: Power2.easeInOut,
@@ -273,7 +307,7 @@ export default class Zoomer {
       ease: Power2.easeInOut
     });
 
-    TweenMax.to(this.DOM.imgNode, 0.8, {
+    TweenMax.to(this.DOM.imgParent, 0.8, {
       x: `${this.initialStyles.x}%`,
       y: `${this.initialStyles.y}%`,
       ease: Power2.easeInOut
@@ -332,6 +366,8 @@ export default class Zoomer {
     this.scrollAnimating = true;
     this.introVisible = false;
 
+    this.resetColor();
+
     this.zoomOut();
 
     TweenMax.to(this.DOM.cover, 0.4, {
@@ -363,6 +399,8 @@ export default class Zoomer {
     });
 
     this.setZoom();
+
+    this.resetColor();
 
     this.scrollAnimating = false;
     this.onTop = false;
@@ -412,6 +450,23 @@ export default class Zoomer {
     }
 
     window.loco.on('scroll', onScroll);
+  }
+
+  resetColor() {
+    this.DOM.img.src = this.originalImgUrl;
+    this.setColorActive('white', 'yellow');
+  }
+
+  setColorActive(c1, c2) {
+    $.qsa('[data-color]', this.DOM.colorsList).forEach(color => {
+      color.classList.remove('active');
+    });
+    $.qs(`.zoomer-colors__inner:first-child [data-color=${c1}]`).classList.add(
+      'active'
+    );
+    $.qs(`.zoomer-colors__inner:last-child [data-color=${c2}]`).classList.add(
+      'active'
+    );
   }
 }
 
