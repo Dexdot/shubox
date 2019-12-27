@@ -455,8 +455,8 @@ export default class Zoomer {
       const y = window.parseInt(scroll.y);
 
       // Header
-      if (dir === 'up') $.qs('.header').classList.remove('hidden');
-      if (dir === 'down' && y > 80) $.qs('.header').classList.add('hidden');
+      // if (dir === 'up') $.qs('.header').classList.remove('hidden');
+      // if (dir === 'down' && y > 80) $.qs('.header').classList.add('hidden');
 
       const upCondition = window.loco.isMobile
         ? dir === 'up' && y <= edge - 150 && !self.onTop
