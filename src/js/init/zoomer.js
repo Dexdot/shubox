@@ -110,11 +110,11 @@ export default class Zoomer {
       }
     });
 
-    $.delegate('.js-valik', () => {
+    $.qs('.js-valik').addEventListener('mouseenter', () => {
       this.toggleMatrasik(false);
     });
 
-    $.delegate('.js-matrasik', () => {
+    $.qs('.js-matrasik').addEventListener('mouseenter', () => {
       this.toggleMatrasik(true);
     });
 
