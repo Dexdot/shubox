@@ -86,11 +86,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const zoomerMob = new Slider($.qs('.zoomer-mob ul'));
+  // const zoomerMob = new Slider($.qs('.zoomer-mob ul'));
   onUpdate(window.zoomer.zoomer);
   window.zoomer.zoomer.DOM.el.addEventListener('slider:updatecomplete', () => {
     onUpdate(window.zoomer.zoomer);
-    zoomerMob.update('', window.zoomer.zoomer.index);
+    // zoomerMob.update('', window.zoomer.zoomer.index);
   });
 
   $.delegate('.js-zooder-prev', () => {
