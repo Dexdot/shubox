@@ -18,6 +18,8 @@ export default class Zoomer {
     this.DOM.btn = $.qs('.zoomer__btn');
     this.DOM.cover = $.qs('.zoomer__cover');
     this.DOM.colorsList = $.qs('.zoomer-colors');
+    this.DOM.material = $.qs('.zoomer-material');
+    this.DOM.materialImg = $.qs('.zoomer-material-img');
 
     this.initialStyles = {};
     this.initialStyles.scale = window.getComputedScaleXY(
@@ -106,6 +108,14 @@ export default class Zoomer {
       if (!this.scrollAnimating && !window.loco.isMobile) {
         this.introIn();
       }
+    });
+
+    $.delegate('.js-valik', () => {
+      this.toggleMatrasik(false);
+    });
+
+    $.delegate('.js-matrasik', () => {
+      this.toggleMatrasik(true);
     });
 
     this.createWI();
@@ -256,6 +266,14 @@ export default class Zoomer {
       this.DOM.colorsList.classList.remove('hidden');
     } else {
       this.DOM.colorsList.classList.add('hidden');
+    }
+
+    // Hide / show material
+    if (index === 2) {
+      this.DOM.material.classList.remove('hidden');
+    } else {
+      this.DOM.material.classList.add('hidden');
+      this.toggleMatrasik(false);
     }
   }
 
@@ -455,6 +473,7 @@ export default class Zoomer {
   resetColor() {
     this.DOM.img.src = this.originalImgUrl;
     this.setColorActive('white', 'yellow');
+    this.toggleMatrasik(false);
   }
 
   setColorActive(c1, c2) {
@@ -467,6 +486,14 @@ export default class Zoomer {
     $.qs(`.zoomer-colors__inner:last-child [data-color=${c2}]`).classList.add(
       'active'
     );
+  }
+
+  toggleMatrasik(show = true) {
+    if (show) {
+      this.DOM.materialImg.classList.remove('hidden');
+    } else {
+      this.DOM.materialImg.classList.add('hidden');
+    }
   }
 }
 

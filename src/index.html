@@ -124,7 +124,18 @@
     </section>
 
     <section class="zoomer">
-      <div class="zoomer-colors">
+      <div class="zoomer-material hidden">
+        <button class="js-valik">
+          <img src="img/valik.png" alt="Валик" />
+          <span>Валик</span>
+        </button>
+        <button class="js-matrasik">
+          <img src="img/matrasik.png" alt="Матрасик" />
+          <span>Матрасик</span>
+        </button>
+      </div>
+
+      <div class="zoomer-colors hidden">
         <div class="zoomer-colors__inner">
           <span>Цвет корпуса:</span>
           <ul>
@@ -167,6 +178,11 @@
             <img src="/img/render-3840.png" alt="" />
           </div>
         </div>
+        <img
+          class="zoomer-material-img hidden"
+          src="/img/zoomer/material-img.jpg"
+          alt=""
+        />
       </div>
 
       <div class="zoomer__side">
@@ -185,7 +201,15 @@
           </li>
           <li>
             <div class="img">
-              <img src="/img/zoomer/2.jpg" alt="" class="img__i" />
+              <!-- <img src="/img/zoomer/2.jpg" alt="" class="img__i" /> -->
+              <video
+                src="/img/zoomer/2.mp4"
+                class="img__i"
+                muted
+                autoplay
+                playsinline
+                loop
+              ></video>
             </div>
           </li>
           <li>
