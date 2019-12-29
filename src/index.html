@@ -19,6 +19,7 @@
     <meta name="robots" content="index, follow" />
 
     <!-- OG -->
+    <meta property="og:title" content="Купить банкетку с ящиками в Москве." />
     <meta property="og:locale" content="ru_RU">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Купить банкетку с ящиками в Москве - SHUBOX">
@@ -34,13 +35,12 @@
         "url" : "http://shu-box.ru/banketki",
         "brand" : "Shubox",
         "manufacturer" : "Shubox",
-        "category" : "Банкетки",
-        "itemCondition" : "Новые",
+        "category" : "Банкетка",
+        "itemCondition" : "Новая",
         "logo" : "img/logo.png",
         "image" : "img/render-3840.png",
-        "name" : "Банкетки с ящиками для хранения",
-        "description" : "Банкетки с ящиками для хранения 12-72 пар обуви в Москве",
-        "price" : "25000"
+        "name" : "Банкетка с ящиками для хранения",
+        "description" : "Банкетка с ящиками для хранения 12-72 пар обуви в Москве"
       }
     </script>
 
@@ -150,11 +150,15 @@
 
     <section class="zoomer">
       <div class="zoomer-material hidden">
-        <button class="js-valik">
+        <button class="js-material" data-mat="capitane">
+          <img src="img/zoomer/capitane.jpg" alt="Капитане" />
+          <span>Капитане</span>
+        </button>
+        <button class="js-material" data-mat="valik">
           <img src="img/valik.png" alt="Валик" />
           <span>Валик</span>
         </button>
-        <button class="js-matrasik">
+        <button class="js-material" data-mat="matrasik">
           <img src="img/matrasik.png" alt="Матрасик" />
           <span>Матрасик</span>
         </button>
@@ -203,6 +207,12 @@
             <img src="/img/render-3840.png" alt="" />
           </div>
         </div>
+        <img
+          data-mat="capitane"
+          class="zoomer-material-img hidden"
+          src="/img/zoomer/capitane.jpg"
+          alt=""
+        />
         <img
           data-mat="valik"
           class="zoomer-material-img hidden"
@@ -527,7 +537,7 @@
   </section>
   <section class="copyright">
     <p itemprop="member">ИП Шпагин Андрей Игоревич ОГРНИП 317784700331606</p>
-    <b class="t-ttu">© SHUBOX 2017</b>
+    <b class="t-ttu">© <span itemprop="name">SHUBOX</span> 2017</b>
     <ul>
       <li>
         <a href="#">Вакансии</a>

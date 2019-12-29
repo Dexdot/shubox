@@ -19,8 +19,7 @@ export default class Zoomer {
     this.DOM.cover = $.qs('.zoomer__cover');
     this.DOM.colorsList = $.qs('.zoomer-colors');
     this.DOM.material = $.qs('.zoomer-material');
-    this.DOM.valik = $.qs('[data-mat="valik"]');
-    this.DOM.matrasik = $.qs('[data-mat="matrasik"]');
+    this.DOM.materialImages = $.qsa('img[data-mat]');
 
     this.initialStyles = {};
     this.initialStyles.scale = window.getComputedScaleXY(
@@ -112,20 +111,14 @@ export default class Zoomer {
       }
     });
 
-    $.qs('.js-valik').addEventListener('mouseenter', () => {
-      this.toggleMatrasik('valik');
+    $.each('.js-material', btn => {
+      btn.addEventListener('mouseenter', () => {
+        this.toggleMaterial(btn.dataset.mat);
+      });
     });
 
-    $.qs('.js-matrasik').addEventListener('mouseenter', () => {
-      this.toggleMatrasik('matrasik');
-    });
-
-    $.qs('.js-valik').addEventListener('mouseleave', () => {
-      this.toggleMatrasik('all');
-    });
-
-    $.qs('.js-matrasik').addEventListener('mouseleave', () => {
-      this.toggleMatrasik('all');
+    this.DOM.material.addEventListener('mouseleave', () => {
+      this.toggleMaterial('all');
     });
 
     this.createWI();
@@ -287,7 +280,7 @@ export default class Zoomer {
       this.DOM.material.classList.remove('hidden');
     } else {
       this.DOM.material.classList.add('hidden');
-      this.toggleMatrasik(false);
+      this.toggleMaterial('all');
     }
   }
 
@@ -487,7 +480,7 @@ export default class Zoomer {
   resetColor() {
     this.DOM.img.src = this.originalImgUrl;
     this.setColorActive('white', 'yellow');
-    this.toggleMatrasik(false);
+    this.toggleMaterial('all');
   }
 
   setColorActive(c1, c2) {
@@ -502,25 +495,23 @@ export default class Zoomer {
     );
   }
 
-  toggleMatrasik(type) {
-    switch (type) {
-      case 'valik':
-        this.DOM.valik.classList.remove('hidden');
-        this.DOM.matrasik.classList.add('hidden');
-        break;
+  toggleMaterial(type) {
+    clearTimeout(this.matTimer);
 
-      case 'matrasik':
-        this.DOM.valik.classList.add('hidden');
-        this.DOM.matrasik.classList.remove('hidden');
-        break;
+    if (type === 'all') {
+      this.DOM.materialImages.forEach(img => {
+        img.classList.add('hidden');
+      });
+    } else {
+      $.qs(`img[data-mat="${type}"]`).classList.remove('hidden');
 
-      case 'all':
-        this.DOM.valik.classList.add('hidden');
-        this.DOM.matrasik.classList.add('hidden');
-        break;
-
-      default:
-        break;
+      this.matTimer = setTimeout(() => {
+        this.DOM.materialImages.forEach(img => {
+          if (img.dataset.mat !== type) {
+            img.classList.add('hidden');
+          }
+        });
+      }, 150);
     }
   }
 }

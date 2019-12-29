@@ -14,11 +14,15 @@
 
     <section class="zoomer">
       <div class="zoomer-material hidden">
-        <button class="js-valik">
+        <button class="js-material" data-mat="capitane">
+          <img src="img/zoomer/capitane.jpg" alt="Капитане" />
+          <span>Капитане</span>
+        </button>
+        <button class="js-material" data-mat="valik">
           <img src="img/valik.png" alt="Валик" />
           <span>Валик</span>
         </button>
-        <button class="js-matrasik">
+        <button class="js-material" data-mat="matrasik">
           <img src="img/matrasik.png" alt="Матрасик" />
           <span>Матрасик</span>
         </button>
@@ -67,6 +71,12 @@
             <img src="/img/render-3840.png" alt="" />
           </div>
         </div>
+        <img
+          data-mat="capitane"
+          class="zoomer-material-img hidden"
+          src="/img/zoomer/capitane.jpg"
+          alt=""
+        />
         <img
           data-mat="valik"
           class="zoomer-material-img hidden"
