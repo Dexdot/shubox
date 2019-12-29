@@ -37,12 +37,13 @@ export default class Zoomer {
     this.scrollAnimating = false;
     this.introVisible = false;
     this.onTop = true;
+    this.isMob = window.innerWidth <= 500;
 
     this.init();
   }
 
   init() {
-    this.zoomer = new Slider(this.DOM.slider);
+    this.zoomer = new Slider(this.DOM.slider, this.isMob);
 
     this.DOM.el.addEventListener('scrollto:complete', () => {
       this.introComplete();
@@ -143,9 +144,12 @@ export default class Zoomer {
         if (!this.introVisible) return false;
 
         if (direction === 'up') {
-          if (this.zoomer.index !== 0 && !this.sliderAnimating) {
+          const first = this.zoomer.index === 0;
+          const loop = this.isMob || !first;
+
+          if (loop && !this.sliderAnimating) {
             this.prev();
-          } else if (this.zoomer.index === 0 && !this.sliderAnimating) {
+          } else if (first && !this.sliderAnimating) {
             this.introOut();
             window.scroll.to('.hero', 0);
           }
@@ -157,16 +161,17 @@ export default class Zoomer {
   }
 
   prev() {
-    if (this.zoomer.index !== 0 && !this.sliderAnimating) {
+    const notFirst = this.zoomer.index !== 0;
+    const loop = this.isMob || notFirst;
+    if (loop && !this.sliderAnimating) {
       this.zoomer.prev();
     }
   }
 
   next() {
-    if (
-      this.zoomer.index !== this.zoomer.DOM.slides.length - 1 &&
-      !this.sliderAnimating
-    ) {
+    const last = this.zoomer.index !== this.zoomer.DOM.slides.length - 1;
+    const loop = this.isMob || last;
+    if (loop && !this.sliderAnimating) {
       this.zoomer.next();
     }
   }

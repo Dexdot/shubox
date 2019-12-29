@@ -1,5 +1,7 @@
 export default class Slider {
-  constructor(el) {
+  constructor(el, loop = false) {
+    this.loop = loop;
+
     this.DOM = { el };
     this.DOM.slides = Array.from(this.DOM.el.children);
     [this.DOM.active] = this.DOM.slides;
@@ -68,15 +70,17 @@ export default class Slider {
 
     switch (action) {
       case 'prev':
-        if (this.index > 0) this.index = this.index - 1;
-        // this.index =
-        //   this.index <= 0 ? this.DOM.slides.length - 1 : this.index - 1;
+        if (this.loop) {
+          this.index =
+            this.index <= 0 ? this.DOM.slides.length - 1 : this.index - 1;
+        } else if (this.index > 0) this.index = this.index - 1;
         break;
       case 'next':
-        if (this.index < this.DOM.slides.length - 1)
+        if (this.loop) {
+          this.index =
+            this.index === this.DOM.slides.length - 1 ? 0 : this.index + 1;
+        } else if (this.index < this.DOM.slides.length - 1)
           this.index = this.index + 1;
-        // this.index =
-        //   this.index === this.DOM.slides.length - 1 ? 0 : this.index + 1;
         break;
 
       default:

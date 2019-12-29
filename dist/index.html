@@ -10,14 +10,39 @@
     />
 
     <title>
-      SHUBOX - Дизайнерская мебель для хранения премиум обуви, одежды и
-      аксессуаров
+      Купить банкетку с ящиками в Москве.
     </title>
 
     <!-- Meta -->
-    <meta name="description" content="ShuBox" />
+    <meta name="description" content="Банкетки с ящиками для хранения 12-72 пар обуви. Производство на заказ в Москве. Тел +7(499)703-40-10" />
     <meta name="keywords" content="shubox" />
     <meta name="robots" content="index, follow" />
+
+    <!-- OG -->
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Купить банкетку с ящиками в Москве - SHUBOX">
+    <meta property="og:url" content="https://shubox.ru/banketki">
+    <meta property="og:image" content="/img/render-3840.png">
+    <meta property="og:description" content="Банкетки с ящиками для хранения 12-72 пар обуви. Производство на заказ в Москве. Тел +7(499)703-40-10">
+
+    <!-- Schema Product -->
+    <script type="application/ld+json">
+      {
+        "@context" : "http://schema.org",
+        "@type" : "Product",
+        "url" : "http://shu-box.ru/banketki",
+        "brand" : "Shubox",
+        "manufacturer" : "Shubox",
+        "category" : "Банкетки",
+        "itemCondition" : "Новые",
+        "logo" : "img/logo.png",
+        "image" : "img/render-3840.png",
+        "name" : "Банкетки с ящиками для хранения",
+        "description" : "Банкетки с ящиками для хранения 12-72 пар обуви в Москве",
+        "price" : "25000"
+      }
+    </script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="/css/main.min.css" />
@@ -230,16 +255,17 @@
             <p>Продуманная система хранения на 12-36 пар обуви.</p>
           </li>
           <li class="zoomer__slide" data-x="-57" data-y="-50" data-scale="1">
-            <h2 class="t-h2">16 цветов</h2>
+            <h2 class="t-h2">Цвета и размерный ряд</h2>
             <p>
-              16 стандартных цветов позволяют создать 120 уникальных комбинаций.
+              Мы разработали 16 стандартных комбинаций цветов. Этого мало?
+              Закажите банкетку с индивидуальным дизайном и размерами!
             </p>
           </li>
           <li class="zoomer__slide" data-x="-10" data-y="1" data-scale="4">
-            <h2 class="t-h2">Ткань</h2>
+            <h2 class="t-h2">Мягкий верх</h2>
             <p>
-              Износостойкий велюр, моющаяся (aqua clean) или антиавндальная
-              ткань (антикоготь).
+              Капитане, “матрасик” или “валики”. Износостойкий велюр, моющаяся
+              (aqua clean) или антивандальная ткань (антикоготь).
             </p>
           </li>
           <li class="zoomer__slide" data-x="-24" data-y="-23" data-scale="3.8">
@@ -252,7 +278,7 @@
           <li class="zoomer__slide" data-x="-30" data-y="-17" data-scale="3.5">
             <h2 class="t-h2">Экологичность</h2>
             <p>
-              Наша мебель изготовлена из ЛДСП EGGER класса E0. Она не содержит
+              Наша мебель изготовлена из ЛДСП EGGER класса E1. Она не содержит
               вредных химических веществ (формальдегидов), пары которых вредят
               здоровью. Идеально подходит для дома, где есть дети, т.к. не
               вызывает аллергии и астмы.
@@ -450,12 +476,12 @@
     </div>
   </section>
 
-  <footer class="footer">
+  <footer class="footer" itemscope itemtype="http://schema.org/Organization">
   <section class="text-block">
     <h2 class="text-block__title">Наши контакты</h2>
     <div class="text-block__info footer__info">
       <b>Офис</b>
-      <p>
+      <p itemprop="address">
         г.Санкт-Петербург, Пулковское шоссе, д.28, БЦ PULKOVO STAR
       </p>
 
@@ -463,12 +489,12 @@
       <p>
         <a href="tel:+74997034010" class="u-flex u-aic">
           <img src="/img/svg/whatsapp.svg" alt="Whatsapp" />
-          <span>+7 (499) 703-40-10</span>
+          <span itemprop="telephone">+7 (499) 703-40-10</span>
         </a>
       </p>
 
       <b>Email</b>
-      <p><a href="mailto:info@shu-box.ru">info@shu-box.ru</a></p>
+      <p><a href="mailto:info@shubox.ru" itemprop="email">info@shubox.ru</a></p>
 
       <b>Социальные сети</b>
       <p>
@@ -500,7 +526,7 @@
     </div>
   </section>
   <section class="copyright">
-    <p>ИП Шпагин Андрей Игоревич ОГРНИП 317784700331606</p>
+    <p itemprop="member">ИП Шпагин Андрей Игоревич ОГРНИП 317784700331606</p>
     <b class="t-ttu">© SHUBOX 2017</b>
     <ul>
       <li>
