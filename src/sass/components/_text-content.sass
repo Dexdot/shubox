@@ -10,6 +10,9 @@
     +link($acc)
     display: block
     margin-bottom: 80px
+  
+  b
+    +mont(m)
 
   h2, h3
     line-height: 1.1
@@ -18,12 +21,18 @@
   p
     margin-bottom: 1.6em
 
+  ol
+    list-style: decimal
+
   ul
-    color: $grey
     list-style: disc
+
+  ul,
+  ol
+    color: $grey
     margin-bottom: 1.6em
 
-    padding: 8px 0
+    padding: 8px 0 8px 24px
 
     li:not(:last-child)
       margin-bottom: 16px
