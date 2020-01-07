@@ -1,4 +1,7 @@
-$btn-h: 40px
+$btn-h: var(--btn-h)
+
+.btn
+  --btn-h: 40px
   
 .btn
   +mont(m)
@@ -14,6 +17,15 @@ $btn-h: 40px
   &:hover
     background: $acc
     color: #fff
+
+
+.btn--white
+  border: 1px solid $border
+  +link($black)
+
+  &:hover
+    background: $border
+    color: $black
 
 a.btn
   display: flex

@@ -1,0 +1,39 @@
+.upload
+  display: flex
+  align-items: center
+
+  position: relative
+
+  &__field
+    opacity: 0
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+    &:invalid ~ .i-file,
+    &:invalid ~ .upload__clear
+      display: none
+
+    &:valid ~ .i-clip
+      display: none
+
+  > svg
+    stroke: $acc
+    margin-right: 12px
+
+  &__clear
+    position: relative
+    z-index: 1
+
+    margin-left: 8px
+    width: 14px
+    height: 14px
+
+    svg
+      width: 8px
+      height: 8px
+
+  &__text
+    color: $acc

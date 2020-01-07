@@ -1,0 +1,221 @@
+$checkbox-size: 20px
+$checkbox-switch-w: 43px
+$checkbox-switch-h: 26px
+
+$checkbox-rect-size: $checkbox-size * 0.4
+$checkbox-rect-bg: $acc
+
+$checkbox-bg: #F6F6F6
+$checkbox-bg-hover: #E2E2E2
+$checkbox-bg-checked: #F6F6F6
+$checkbox-disabled-opacity: 0.2
+
+$checkbox-stroke: rgba($black, 0.5)
+$checkbox-stroke-hover: $acc
+
+
+
+
+// Parent
+.checkbox  
+  line-height: 1
+  
+  transition: $trs
+  cursor: pointer
+
+  height: $checkbox-size
+  display: flex
+  align-items: center
+
+  padding-left: $checkbox-size
+  position: relative
+
+
+// Rect
+.checkbox__rect
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+
+  display: block
+  width: $checkbox-size
+  height: $checkbox-size
+
+  cursor: pointer
+  transition: $trs
+  border-radius: 2px
+  background: $checkbox-bg
+
+.checkbox__rect::before
+  content: ''
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+  display: none
+  width: $checkbox-rect-size
+  height: $checkbox-rect-size
+
+  background: $checkbox-rect-bg
+  transition: $trs
+  opacity: 0
+
+
+// Daw
+.checkbox__daw
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+  fill: $checkbox-rect-bg
+  transition: $trs
+  opacity: 0
+
+  width: 12px
+  height: 10px
+
+
+// Text
+.checkbox__text
+  display: inline-block
+  vertical-align: middle
+  padding-left: 16px
+  cursor: pointer
+
+  font-size: 14px
+  color: rgba($black, 0.5)
+
+  a
+    +link($acc)
+    margin-left: 0.3em
+
+// Num
+.checkbox__num
+  margin-left: -2px
+  opacity: 0
+  transition: $trs
+
+
+// Input
+.checkbox__field
+  position: absolute
+  top: 0
+  left: 0
+
+  opacity: 0
+  cursor: pointer
+
+  width: $checkbox-size
+  height: $checkbox-size
+
+
+// Hover
+.checkbox__field:hover:not(:disabled) ~ .checkbox__rect
+  background: $checkbox-bg-hover
+.checkbox__field:hover:not(:disabled) ~ .checkbox__text .checkbox__num
+  opacity: 1
+  
+
+// Checked
+.checkbox__field:checked ~ .checkbox__rect
+  background: $checkbox-bg-checked
+
+.checkbox__field:checked ~ .checkbox__rect .checkbox__daw,
+.checkbox__field:checked ~ .checkbox__rect::before
+  opacity: 1
+  
+
+// Disabled
+.checkbox__field:disabled,
+.checkbox__field:disabled ~ .checkbox__text,
+.checkbox__field:disabled ~ .checkbox__rect
+  pointer-events: none
+  user-select: none
+
+.checkbox__field:disabled ~ .checkbox__text
+  opacity: $checkbox-disabled-opacity
+
+
+
+
+/* RADIO */
+.checkbox--radio
+  .checkbox__rect,
+  .checkbox__rect::before
+    border-radius: 50%
+
+
+
+
+/* OUTLINED */
+.checkbox--outlined
+  // Rect
+  .checkbox__rect
+    background: 0
+    border: 2px solid $checkbox-stroke
+
+  // Hover
+  .checkbox__field:hover:not(:disabled) ~ .checkbox__rect
+    background: $checkbox-stroke-hover
+    border: 2px solid rgba($checkbox-stroke-hover, 1)
+
+  // Checked
+  .checkbox__field:checked ~ .checkbox__rect
+    background: $acc
+    border: 2px solid rgba($checkbox-stroke-hover, 0)
+
+  .checkbox__field:checked ~ .checkbox__rect .checkbox__daw
+    fill: #fff
+
+
+
+
+/* SWITCH */
+.checkbox--switch
+  padding-left: $checkbox-switch-w
+  height: $checkbox-switch-h
+
+  // Daw
+  .checkbox__daw
+    display: none
+
+
+  // Field
+  .checkbox__field
+    width: 100%
+    height: 100%
+
+  // Rect
+  .checkbox__rect
+    width: $checkbox-switch-w
+    height: $checkbox-switch-h
+
+    border-radius: 40px
+
+  .checkbox__rect::before
+    display: block
+    width: 24px
+    height: 24px
+
+    background: #fff
+    border: 1px solid #E5E5E5
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3)
+    border-radius: 50%
+    opacity: 1
+
+    left: 0
+    transform: translate(1px, -50%)
+
+  // Checked
+  .checkbox__field:checked ~ .checkbox__rect
+    background: #56CE7E
+
+  .checkbox__field:checked ~ .checkbox__rect::before
+    transform: translate(calc(#{$checkbox-switch-w} - 100% - 1px), -50%)
+
+  // Disabled
+  .checkbox__field:disabled ~ .checkbox__rect::before
+    opacity: $checkbox-disabled-opacity

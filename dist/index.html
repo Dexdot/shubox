@@ -61,7 +61,7 @@
 
 <!-- Sprite -->
 <!-- SVG Sprite -->
-<div style="display: none"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="i-arrow-sm"><path d="M9.354 4.354a.5.5 0 000-.708L6.172.464a.5.5 0 10-.708.708L8.293 4 5.464 6.828a.5.5 0 10.708.708l3.182-3.182zM0 4.5h9v-1H0v1z"/></symbol><symbol id="i-arrow"><path d="M.646 3.646a.5.5 0 000 .708l3.182 3.182a.5.5 0 10.708-.708L1.707 4l2.829-2.828a.5.5 0 00-.708-.708L.646 3.646zm75.17-.146H1v1h74.816v-1z"/></symbol><symbol id="i-chevron" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol><symbol id="i-close" viewBox="0 0 22 22"><path d="M1 1l10 10m10 10L11 11m0 0L21 1 1 21"/></symbol><symbol id="i-plus" viewBox="0 0 14 14"><path d="M7 2.917v8.166M2.918 7h8.167" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg></div>
+<div style="display: none"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><clipPath id="clip0"><rect/></clipPath></defs><symbol id="i-arrow-sm"><path d="M9.354 4.354a.5.5 0 000-.708L6.172.464a.5.5 0 10-.708.708L8.293 4 5.464 6.828a.5.5 0 10.708.708l3.182-3.182zM0 4.5h9v-1H0v1z"/></symbol><symbol id="i-arrow"><path d="M.646 3.646a.5.5 0 000 .708l3.182 3.182a.5.5 0 10.708-.708L1.707 4l2.829-2.828a.5.5 0 00-.708-.708L.646 3.646zm75.17-.146H1v1h74.816v-1z"/></symbol><symbol id="i-chevron" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol><symbol id="i-clip" viewBox="0 0 20 20"><path d="M17.867 9.208l-7.659 7.659a5.003 5.003 0 11-7.075-7.075l7.659-7.659a3.335 3.335 0 114.716 4.717l-7.666 7.658a1.667 1.667 0 11-2.359-2.358l7.075-7.067"/></symbol><symbol id="i-close" viewBox="0 0 22 22"><path d="M1 1l10 10m10 10L11 11m0 0L21 1 1 21"/></symbol><symbol id="i-daw" viewBox="0 0 14 12"><path d="M1.522 5.308A.75.75 0 00.478 6.385l1.044-1.077zM5.286 10l-.522.539.572.555.52-.606-.57-.488zm8.283-8.512a.75.75 0 10-1.138-.976l1.138.976zM.478 6.385l4.286 4.154L5.808 9.46 1.522 5.308.478 6.385zm5.377 4.103l7.714-9-1.138-.976-7.715 9 1.14.976z"/></symbol><symbol id="i-file" viewBox="0 0 20 20"><g clip-path="url(#clip0)"><path d="M10.833 1.667H5a1.667 1.667 0 00-1.667 1.666v13.334A1.667 1.667 0 005 18.333h10a1.667 1.667 0 001.667-1.666V7.5l-5.834-5.833z"/><path d="M10.833.667V6.5h5.834"/></g></symbol><symbol id="i-plus" viewBox="0 0 14 14"><path d="M7 2.917v8.166M2.918 7h8.167" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg></div>
 <!-- ./SVG Sprite -->
 
 <!-- Header -->
@@ -98,7 +98,9 @@
 
       <a href="tel:+74997034010" class="header__phone">+7 (499) 703-40-10</a>
     </div>
-    <a href="#" class="header__btn btn">Узнать стоимость</a>
+    <a href="#" class="header__btn btn" data-modal-open="order"
+      >Узнать стоимость</a
+    >
     <button class="header__burger burger">
       <div class="burger-icon">
         <span class="burger-icon-top"></span>
@@ -134,6 +136,165 @@
   </div>
 </section>
 
+<!-- Order -->
+<section class="modal order" data-modal="order">
+  <button class="overlay" type="button" data-modal-close="order"></button>
+
+  <div class="modal__container">
+    <div class="modal__content">
+      <form class="order__form" action="form.php" method="POST">
+        <div class="order__form-head">
+          <b>Отправить заявку</b>
+          <button class="u-center" type="button" data-modal-close="order">
+            <svg class="i-close"><use xlink:href="#i-close" /></svg>
+          </button>
+        </div>
+
+        <div class="order__form-inner">
+          <label class="input">
+            <input
+              class="input__field"
+              type="text"
+              required
+              name="form_name"
+              minlength="2"
+            /><span class="input__text">Имя и Фамилия<sup>*</sup></span>
+          </label>
+
+          <label class="input">
+            <input
+              class="input__field"
+              required
+              type="tel"
+              name="form_phone"
+              required
+              minlength="6"
+            /><span class="input__text">Номер телефона<sup>*</sup></span>
+          </label>
+
+          <label class="checkbox checkbox--outlined">
+            <input class="checkbox__field" type="checkbox" /><span
+              class="checkbox__rect"
+            >
+              <svg class="checkbox__daw i-daw">
+                <use xlink:href="#i-daw"></use></svg></span
+            ><span class="checkbox__text"
+              >Я согласен на обработку персональных данных</span
+            >
+          </label>
+
+          <button class="btn" type="submit">Отправить заявку</button>
+          <button class="btn btn--white" type="button" data-modal-close="order">
+            Отмена
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Vacancy -->
+<section class="modal order" data-modal="vacancy">
+  <button class="overlay" type="button" data-modal-close="vacancy"></button>
+
+  <div class="modal__container">
+    <div class="modal__content">
+      <form class="order__form" action="form.php" method="POST">
+        <div class="order__form-head">
+          <b>Отправить заявку</b>
+          <button class="u-center" type="button" data-modal-close="vacancy">
+            <svg class="i-close"><use xlink:href="#i-close" /></svg>
+          </button>
+        </div>
+
+        <div class="order__form-inner">
+          <label class="input">
+            <input
+              class="input__field"
+              type="text"
+              required
+              name="form_name"
+              minlength="2"
+            /><span class="input__text">Имя и Фамилия<sup>*</sup></span>
+          </label>
+
+          <label class="input">
+            <input
+              class="input__field"
+              required
+              type="text"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+              name="form_mail"
+            /><span class="input__text">E-mail<sup>*</sup></span>
+          </label>
+
+          <label class="input">
+            <input
+              class="input__field"
+              required
+              type="tel"
+              name="form_phone"
+              minlength="6"
+            /><span class="input__text">Номер телефона</span>
+          </label>
+
+          <label class="input input--textarea">
+            <textarea class="input__field"></textarea
+            ><span class="input__text">Сопроводительное письмо</span>
+          </label>
+
+          <div class="upload js-upload">
+            <input class="upload__field js-upload-input" type="file" required />
+            <svg class="i-clip"><use xlink:href="#i-clip" /></svg>
+            <svg class="i-file"><use xlink:href="#i-file" /></svg>
+            <span class="upload__text js-upload-text">Прикрепить резюме</span>
+            <button class="upload__clear u-center js-upload-clear">
+              <svg class="i-close"><use xlink:href="#i-close" /></svg>
+            </button>
+          </div>
+
+          <label class="checkbox checkbox--outlined">
+            <input class="checkbox__field" type="checkbox" /><span
+              class="checkbox__rect"
+            >
+              <svg class="checkbox__daw i-daw">
+                <use xlink:href="#i-daw"></use></svg></span
+            ><span class="checkbox__text"
+              >Я согласен на обработку персональных данных</span
+            >
+          </label>
+
+          <button class="btn" type="submit">Отправить заявку</button>
+          <button
+            class="btn btn--white"
+            type="button"
+            data-modal-close="vacancy"
+          >
+            Отмена
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Success -->
+<section class="modal" data-modal="success">
+  <button class="overlay" type="button" data-modal-close="success"></button>
+
+  <div class="modal__container">
+    <div class="modal__content">
+      <div class="success-content">
+        <button class="u-center" type="button" data-modal-close="success">
+          <svg class="i-close"><use xlink:href="#i-close" /></svg>
+        </button>
+        <img src="img/svg/success-circle.svg" alt="Успех!" />
+        <p>Заявка успешно отправлена.<br />Мы обязательно свяжемся с вами</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 <main id="js-scroll">
@@ -144,7 +305,7 @@
           <span>Банкетки с системой хранения от 25.000 руб</span>
           <span>Банкетки от 25.000 руб</span>
         </h1>
-        <a href="#" class="link">Скачать каталог</a>
+        <a href="./catalog.html" class="link">Скачать каталог</a>
       </div>
     </section>
 
@@ -348,7 +509,7 @@
         <p>
           Хотите увидеть, как будет выглядеть новая мебель в вашем интерьере?
         </p>
-        <a href="#" class="link">Получить 3D проект</a>
+        <a href="#" class="link" data-modal-open="order">Получить 3D проект</a>
       </div>
     </div>
 
@@ -417,7 +578,7 @@
           индивидуальным дизайном и размерами. Интерьер прихожей можно дополнить
           панелями, шкафом, комодом или боксом для хранения обуви.
         </p>
-        <a href="#" class="link">Вызвать дизайнера</a>
+        <a href="#" class="link" data-modal-open="order">Вызвать дизайнера</a>
       </div>
     </div>
     <div class="feature">
@@ -469,7 +630,7 @@
   </section>
 
   <section class="download u-center">
-    <a href="#" class="t-h2">Скачать каталог</a>
+    <a href="./catalog.html" class="t-h2">Скачать каталог</a>
   </section>
 
   <section class="text-block about">
@@ -540,13 +701,13 @@
     <b class="t-ttu">© <span itemprop="name">SHUBOX</span> 2017</b>
     <ul>
       <li>
-        <a href="#">Вакансии</a>
+        <a href="./vacancies.html">Вакансии</a>
       </li>
       <li>
-        <a href="/policy.html" target="_blank">Политика конфиденциальности</a>
+        <a href="./policy.html" target="_blank">Политика конфиденциальности</a>
       </li>
       <li>
-        <a href="/offer.html" target="_blank">Публичная оферта</a>
+        <a href="./offer.html" target="_blank">Публичная оферта</a>
       </li>
     </ul>
   </section>
