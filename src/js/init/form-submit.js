@@ -23,18 +23,44 @@ class Form {
   }
 
   submit() {
-    const data = $.serialize(this.form);
+    const data = new FormData();
 
-    axios
-      .post(this.form.action, data)
+    Array.from(this.form.elements).forEach(field => {
+      if (
+        field.name &&
+        !field.disabled &&
+        !['radio', 'checkbox', 'reset', 'submit', 'button'].includes(field.type)
+      ) {
+        if (field.type === 'file') {
+          data.append(field.name, field.files[0]);
+        } else {
+          data.set(field.name, field.value);
+        }
+      }
+    });
+
+    const success = () => {
+      this.onSuccess();
+      this.reset();
+    };
+
+    const error = () => {
+      window.alert(
+        'Произошла ошибка. Пожалуйста, попробуйте еще раз или позвоните нам.'
+      );
+    };
+
+    axios({
+      method: 'post',
+      url: this.form.action,
+      data,
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
       .then(() => {
-        this.onSuccess();
-        this.reset();
+        success();
       })
       .catch(() => {
-        window.alert(
-          'Произошла ошибка. Пожалуйста, попробуйте еще раз или позвоните нам.'
-        );
+        error();
       });
   }
 
