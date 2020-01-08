@@ -34,7 +34,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const gallery = new Slider($.qs('.gallery-slider ul'));
+  const gallerySliderList = $.qs('.gallery-slider ul');
+  if (!gallerySliderList) return false;
+
+  const gallery = new Slider(gallerySliderList);
   onUpdate(gallery);
   gallery.DOM.el.addEventListener('slider:updatecomplete', () => {
     onUpdate(gallery);
@@ -53,6 +56,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Gallery
 window.addEventListener('DOMContentLoaded', () => {
+  if (!window.zoomer) return false;
+
   const onUpdate = ({ index, DOM }) => {
     // Arrows
 

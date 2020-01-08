@@ -3,8 +3,10 @@ const set = () => {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-  const slide = $.qs('.zoomer__slide:nth-child(2)');
-  slide.dataset.x = window.innerWidth <= 1000 ? -50 : -57;
+  if ($.qs('.zoomer')) {
+    const slide = $.qs('.zoomer__slide:nth-child(2)');
+    slide.dataset.x = window.innerWidth <= 1000 ? -50 : -57;
+  }
 };
 
 window.addEventListener('DOMContentLoaded', () => {

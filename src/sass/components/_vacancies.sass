@@ -1,0 +1,118 @@
+.vacancies .copyright ul li:first-child a
+  +link($acc)
+
+.vacancies .footer .text-block
+  display: none
+
+.vacancies-container
+  margin: 0 auto
+
+  position: relative
+  padding-top: 85px
+
+  @media (min-width: 1101px)
+    min-height: calc(100vh - 72px)
+
+  @media (min-width: 1001px) and (max-width: 1100px)
+    min-height: 100vh
+    
+  @media (min-width: 1001px)
+    max-width: 88%
+
+  @media (max-width: 1000px)
+    padding-top: 60px
+    padding-bottom: 56px
+
+.vacancies-content:not(.active)
+  display: none
+
+.vacancies-content
+  display: flex
+  align-items: flex-start
+  padding-top: 96px
+  @media (max-width: 1000px)
+    padding-top: 88px
+    flex-direction: column
+
+.vacancies-content__left
+  @media (min-width: 1001px)
+    min-width: 44.5%
+
+  @media (max-width: 1000px)
+    margin-bottom: 32px
+
+  h2
+    +mont(r)
+    line-height: 1.4
+    @media (min-width: 1001px)
+      max-width: 80%
+
+.vacancies-content__right
+  flex: 1
+  @media (max-width: 1000px)
+    width: 100%
+
+.vacancies-tabs
+  @media (max-width: 1000px)
+    padding-top: 24px
+
+.vacancies-tabs > li:first-child .vacancies-tab
+  border-top: 1px solid $border
+
+.vacancies-tab
+  width: 100%
+  height: 112px
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+  +norms
+  font-size: 20px
+  letter-spacing: -0.02em
+
+  border-bottom: 1px solid $border
+
+  .i-arrow-sm
+    width: 20px
+    height: 20px
+
+.vacancy-description
+  color: rgba($black, 0.7)
+  line-height: 1.6
+
+  ul
+    margin-top: 8px
+    margin-bottom: 24px
+
+  ul li:not(:last-child)
+    margin-bottom: 4px
+
+  ul li
+    position: relative
+    padding-left: 16px
+    
+  ul li::before
+    content: ''
+    position: absolute
+    top: 0.6em
+    left: 0
+
+    width: 6px
+    height: 6px
+
+    background: rgba($black, 0.7)
+
+  .btn
+    margin-top: 40px
+
+    @media (max-width: 500px)
+      width: 100%
+
+.vacancy-back
+  width: 48px
+  height: 16px
+  margin-bottom: 16px
+
+  .i-arrow
+    fill: $acc
+    width: 48px

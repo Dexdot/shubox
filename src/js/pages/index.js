@@ -9,3 +9,5 @@ import '@/init/modal';
 import '@/init/input';
 import '@/init/upload';
 import '@/init/form-submit';
+import '@/init/tabs';
+import '@/init/autosize';

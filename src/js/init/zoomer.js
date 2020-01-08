@@ -5,9 +5,9 @@ import Slider from '@/components/slider';
 const arrayMax = arr => arr.reduce((p, v) => (p > v ? p : v));
 
 export default class Zoomer {
-  constructor() {
+  constructor(el) {
     this.DOM = {};
-    this.DOM.el = $.qs('.zoomer');
+    this.DOM.el = el;
     this.DOM.scaleNode = $.qs('.zoomer__scale');
     this.DOM.imgParent = $.qs('.zoomer__img');
     this.DOM.img = $.qs('.zoomer__img img');
@@ -517,5 +517,6 @@ export default class Zoomer {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  window.zoomer = new Zoomer();
+  const el = $.qs('.zoomer');
+  if (el) window.zoomer = new Zoomer(el);
 });

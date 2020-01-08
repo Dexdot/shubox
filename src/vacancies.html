@@ -321,355 +321,134 @@
 
 
 
-<main id="js-scroll">
-  <div class="u-ovh">
-    <section class="hero">
-      <div class="hero__text">
-        <h1 class="hero__title t-h1">
-          <span>Банкетки с системой хранения от 25.000 руб</span>
-          <span>Банкетки от 25.000 руб</span>
-        </h1>
-        <a href="./catalog.html" class="link">Скачать каталог</a>
-      </div>
-    </section>
-
-    <section class="zoomer">
-      <div class="zoomer-material hidden">
-        <button class="js-material" data-mat="capitane">
-          <img src="img/zoomer/capitane.jpg" alt="Капитане" />
-          <span>Капитане</span>
-        </button>
-        <button class="js-material" data-mat="valik">
-          <img src="img/valik.png" alt="Валик" />
-          <span>Валик</span>
-        </button>
-        <button class="js-material" data-mat="matrasik">
-          <img src="img/matrasik.png" alt="Матрасик" />
-          <span>Матрасик</span>
-        </button>
-      </div>
-
-      <div class="zoomer-colors hidden">
-        <div class="zoomer-colors__inner">
-          <span>Цвет корпуса:</span>
-          <ul>
+<main class="vacancies" id="js-scroll">
+  <div class="container">
+    <div class="vacancies-container">
+      <section class="vacancies-content active" data-tab-content="vac-root">
+        <div class="vacancies-content__left">
+          <h2 class="t-h2">Наши вакансии</h2>
+        </div>
+        <div class="vacancies-content__right">
+          <ul class="vacancies-tabs">
             <li>
-              <button class="active" data-color="white" type="button"></button>
+              <button class="vacancies-tab" data-tab="vac-constructor">
+                Конструктор
+                <svg class="i-arrow-sm"><use xlink:href="#i-arrow-sm" /></svg>
+              </button>
             </li>
             <li>
-              <button data-color="grey" type="button"></button>
+              <button class="vacancies-tab" data-tab="vac-sale">
+                Менеджер по продажам
+                <svg class="i-arrow-sm"><use xlink:href="#i-arrow-sm" /></svg>
+              </button>
             </li>
             <li>
-              <button data-color="beige" type="button"></button>
-            </li>
-            <li>
-              <button data-color="brown" type="button"></button>
+              <button class="vacancies-tab" data-tab="vac-assistant">
+                Помощник руководителя
+                <svg class="i-arrow-sm"><use xlink:href="#i-arrow-sm" /></svg>
+              </button>
             </li>
           </ul>
         </div>
-        <div class="zoomer-colors__inner">
-          <span>Цвет ящика:</span>
-          <ul>
-            <li>
-              <button class="active" data-color="yellow" type="button"></button>
-            </li>
-            <li>
-              <button data-color="blue" type="button"></button>
-            </li>
-            <li>
-              <button data-color="red" type="button"></button>
-            </li>
-            <li>
-              <button data-color="green" type="button"></button>
-            </li>
-          </ul>
-        </div>
-      </div>
+      </section>
 
-      <div class="zoomer__img-wrap">
-        <div class="zoomer__scale">
-          <div class="zoomer__img">
-            <img src="img/render-3840.png" alt="" />
-          </div>
-        </div>
-        <img
-          data-mat="capitane"
-          class="zoomer-material-img hidden"
-          src="img/zoomer/capitane.jpg"
-          alt=""
-        />
-        <img
-          data-mat="valik"
-          class="zoomer-material-img hidden"
-          src="img/zoomer/valik.jpg"
-          alt=""
-        />
-        <img
-          data-mat="matrasik"
-          class="zoomer-material-img hidden"
-          src="img/zoomer/matrasik.jpg"
-          alt=""
-        />
-      </div>
-
-      <div class="zoomer__side">
-        <div class="zoomer__cover"></div>
-        <button class="zoomer__btn t-ttu js-zoomer-skip" type="button">
-          Пропустить
-        </button>
-      </div>
-
-      <div class="zoomer-mob">
-        <ul>
-          <li class="active">
-            <div class="img">
-              <video
-                src="img/zoomer/2.mp4"
-                class="img__i"
-                muted
-                autoplay
-                playsinline
-                loop
-              ></video>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="zoomer__box">
-        <div class="zoomer__counter">
-          <span>01</span>
-          <div class="zoomer__line">
-            <div class="zoomer__line-inner"></div>
-          </div>
-          <span>08</span>
-        </div>
-        <ul class="zoomer__slider">
-          <li class="zoomer__slide" data-x="-7" data-y="-13" data-scale="3.2">
-            <h2 class="t-h2">Система хранения</h2>
-            <p>Продуманная система хранения на 12-36 пар обуви.</p>
-          </li>
-          <li class="zoomer__slide" data-x="-57" data-y="-50" data-scale="1">
-            <h2 class="t-h2">Цвета и размерный ряд</h2>
-            <p>
-              Мы разработали 16 стандартных комбинаций цветов. Этого мало?
-              Закажите банкетку с индивидуальным дизайном и размерами!
-            </p>
-          </li>
-          <li class="zoomer__slide" data-x="-10" data-y="1" data-scale="4">
-            <h2 class="t-h2">Мягкий верх</h2>
-            <p>
-              Капитане, “матрасик” или “валики”. Износостойкий велюр, моющаяся
-              (aqua clean) или антивандальная ткань (антикоготь).
-            </p>
-          </li>
-          <li class="zoomer__slide" data-x="-24" data-y="-23" data-scale="3.8">
-            <h2 class="t-h2">Фурнитура</h2>
-            <p>
-              Фурнитура и направляющие немецкой фирмы Blum обеспечивает надежное
-              мягкое открывание и закрывание.
-            </p>
-          </li>
-          <li class="zoomer__slide" data-x="-30" data-y="-17" data-scale="3.5">
-            <h2 class="t-h2">Экологичность</h2>
-            <p>
-              Наша мебель изготовлена из ЛДСП EGGER класса E1. Она не содержит
-              вредных химических веществ (формальдегидов), пары которых вредят
-              здоровью. Идеально подходит для дома, где есть дети, т.к. не
-              вызывает аллергии и астмы.
-            </p>
-          </li>
-        </ul>
-        <div class="slider-nav">
-          <button
-            type="button"
-            class="slider-nav__btn slider-nav__btn--prev js-zoomer-prev"
-          >
+      <section class="vacancies-content" data-tab-content="vac-constructor">
+        <div class="vacancies-content__left">
+          <button class="vacancy-back u-center" data-tab="vac-root">
             <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
           </button>
-          <button
-            type="button"
-            class="slider-nav__btn slider-nav__btn--next js-zoomer-next"
-          >
+          <h2 class="t-h2">Конструктор</h2>
+        </div>
+        <div class="vacancies-content__right">
+          <div class="vacancy-description">
+            <p>Если тебе откликаются ценности:</p>
+            <ul>
+              <li>Ответственность и самоорганизация;</li>
+              <li>Человечность и взаимоуважение;</li>
+              <li>Созидание и желание развиваться;</li>
+            </ul>
+            <p>Если ты хочешь создавать вместе с нами:</p>
+            <ul>
+              <li>Красивый дизайн, с которым удобно жить;</li>
+              <li>Производство качественной мебели точно в срок;</li>
+              <li>Клиентоориентированный сервис;</li>
+            </ul>
+            <p>Так чего ты ждешь?</p>
+            <p>
+              Расскажи о себе и о том, почему ты хочешь у нас работать.
+            </p>
+            <button class="btn" data-modal-open="vacancy">
+              Оставить заявку
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="vacancies-content" data-tab-content="vac-sale">
+        <div class="vacancies-content__left">
+          <button class="vacancy-back u-center" data-tab="vac-root">
             <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
           </button>
+          <h2 class="t-h2">Менеджер по продажам</h2>
         </div>
-        <div class="slider-nav slider-nav--tab">
-          <button
-            type="button"
-            class="slider-nav__btn slider-nav__btn--prev js-zoomer-prev"
-          >
-            <svg class="i-chevron"><use xlink:href="#i-chevron" /></svg>
-          </button>
-          <button
-            type="button"
-            class="slider-nav__btn slider-nav__btn--next js-zoomer-next"
-          >
-            <svg class="i-chevron"><use xlink:href="#i-chevron" /></svg>
-          </button>
+        <div class="vacancies-content__right">
+          <div class="vacancy-description">
+            <p>Если тебе откликаются ценности:</p>
+            <ul>
+              <li>Ответственность и самоорганизация;</li>
+              <li>Человечность и взаимоуважение;</li>
+              <li>Созидание и желание развиваться;</li>
+            </ul>
+            <p>Если ты хочешь создавать вместе с нами:</p>
+            <ul>
+              <li>Красивый дизайн, с которым удобно жить;</li>
+              <li>Производство качественной мебели точно в срок;</li>
+              <li>Клиентоориентированный сервис;</li>
+            </ul>
+            <p>Так чего ты ждешь?</p>
+            <p>
+              Расскажи о себе и о том, почему ты хочешь у нас работать.
+            </p>
+            <button class="btn" data-modal-open="vacancy">
+              Оставить заявку
+            </button>
+          </div>
         </div>
-        <div class="slider-nav slider-nav--mob">
-          <button
-            type="button"
-            class="slider-nav__btn slider-nav__btn--prev js-zooder-prev"
-          >
-            <svg class="i-chevron"><use xlink:href="#i-chevron" /></svg>
+      </section>
+
+      <section class="vacancies-content" data-tab-content="vac-assistant">
+        <div class="vacancies-content__left">
+          <button class="vacancy-back u-center" data-tab="vac-root">
+            <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
           </button>
-          <button
-            type="button"
-            class="slider-nav__btn slider-nav__btn--next js-zooder-next"
-          >
-            <svg class="i-chevron"><use xlink:href="#i-chevron" /></svg>
-          </button>
+          <h2 class="t-h2">Помощник руководителя</h2>
         </div>
-      </div>
-    </section>
+        <div class="vacancies-content__right">
+          <div class="vacancy-description">
+            <p>Если тебе откликаются ценности:</p>
+            <ul>
+              <li>Ответственность и самоорганизация;</li>
+              <li>Человечность и взаимоуважение;</li>
+              <li>Созидание и желание развиваться;</li>
+            </ul>
+            <p>Если ты хочешь создавать вместе с нами:</p>
+            <ul>
+              <li>Красивый дизайн, с которым удобно жить;</li>
+              <li>Производство качественной мебели точно в срок;</li>
+              <li>Клиентоориентированный сервис;</li>
+            </ul>
+            <p>Так чего ты ждешь?</p>
+            <p>
+              Расскажи о себе и о том, почему ты хочешь у нас работать.
+            </p>
+            <button class="btn" data-modal-open="vacancy">
+              Оставить заявку
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
-
-  <section class="gallery">
-    <div class="gallery__head">
-      <h2 class="gallery__title">Сделаем 3D визуализацию <b>бесплатно</b></h2>
-      <div class="gallery__text">
-        <p>
-          Хотите увидеть, как будет выглядеть новая мебель в вашем интерьере?
-        </p>
-        <a href="#" class="link" data-modal-open="order">Получить 3D проект</a>
-      </div>
-    </div>
-
-    <div class="gallery-slider">
-      <ul>
-        <li class="gallery-slide">
-          <div class="img">
-            <img src="img/3d.jpg" alt="" class="img__i" />
-          </div>
-        </li>
-      </ul>
-
-      <div class="u-hidden slider-nav">
-        <button
-          type="button"
-          class="slider-nav__btn slider-nav__btn--prev js-gallery-prev"
-        >
-          <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
-        </button>
-        <ul class="slider-nav__dots">
-          <li>
-            <button class="js-gallery-dot" type="button"></button>
-          </li>
-          <li>
-            <button class="js-gallery-dot" type="button"></button>
-          </li>
-          <li>
-            <button class="js-gallery-dot" type="button"></button>
-          </li>
-        </ul>
-        <button
-          type="button"
-          class="slider-nav__btn slider-nav__btn--next js-gallery-next"
-        >
-          <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
-        </button>
-      </div>
-
-      <div class="u-hidden slider-nav slider-nav--mob">
-        <button
-          type="button"
-          class="slider-nav__btn slider-nav__btn--prev js-gallery-prev"
-        >
-          <svg class="i-chevron"><use xlink:href="#i-chevron" /></svg>
-        </button>
-        <button
-          type="button"
-          class="slider-nav__btn slider-nav__btn--next js-gallery-next"
-        >
-          <svg class="i-chevron"><use xlink:href="#i-chevron" /></svg>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="feature">
-      <div class="feature__img">
-        <img class="img__i" src="img/s1.jpg" alt="" />
-      </div>
-
-      <div class="feature__text">
-        <h2 class="feature__title">Любые цвета и размеры</h2>
-        <p>
-          Помимо стандартных размеров и цветов, производим банкетки с
-          индивидуальным дизайном и размерами. Интерьер прихожей можно дополнить
-          панелями, шкафом, комодом или боксом для хранения обуви.
-        </p>
-        <a href="#" class="link" data-modal-open="order">Вызвать дизайнера</a>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature__img">
-        <img class="img__i" src="img/fabric.jpg" alt="" />
-      </div>
-
-      <div class="feature__text">
-        <h2 class="feature__title">Современное производство</h2>
-        <p>
-          Высокотехнологичное оборудование европейских производителей позволяет
-          обеспечивать стабильно высокое качество продукции.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="benefits">
-    <ul class="benefits-list">
-      <li class="benefit">
-        <img src="img/svg/shield.svg" alt="Shield icon" />
-        <h2 class="t-h3">Гарантия 5 лет</h2>
-        <p>Распространяется на все виды брака.</p>
-      </li>
-      <li class="benefit">
-        <img src="img/svg/truck.svg" alt="Truck icon" />
-        <h2 class="t-h3">Удобная доставка</h2>
-        <p>
-          Доставка по Москве и РФ собственным транспортом или транспортной
-          компанией. Подъем на этаж и занос в квартиру.
-        </p>
-      </li>
-      <li class="benefit">
-        <img src="img/svg/cc.svg" alt="Card icon" />
-        <h2 class="t-h3">Удобная оплата</h2>
-        <ul>
-          <li>
-            <p>Банковской картой онлайн.</p>
-          </li>
-          <li>
-            <p>Безналичная оплата.</p>
-          </li>
-          <li>
-            <p>Наличными или картой при встрече с дизайнером.</p>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </section>
-
-  <section class="download u-center">
-    <a href="./catalog.html" class="t-h2">Скачать каталог</a>
-  </section>
-
-  <section class="text-block about">
-    <h2 class="text-block__title">О компании</h2>
-    <div class="text-block__info">
-      <p>
-        Создаем концептуальную мебель для хранения с 2017 г. Сегодня мебель
-        SHUBOX - это гардеробные комнаты, шкафы и комоды, банкетки и прихожие,
-        боксы для хранения обуви и бьюти-боксы. (ссылки на соответствующие
-        страницы). Собственное мебельное производство с современным европейским
-        станочным парком позволяет минимизировать брак и обеспечить высокое
-        качество продукции.
-      </p>
-    </div>
-  </section>
 
   <footer class="footer" itemscope itemtype="http://schema.org/Organization">
   <section class="text-block">

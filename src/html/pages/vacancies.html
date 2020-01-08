@@ -1,0 +1,135 @@
+@include('../includes/pre-head.html')
+
+<main class="vacancies" id="js-scroll">
+  <div class="container">
+    <div class="vacancies-container">
+      <section class="vacancies-content active" data-tab-content="vac-root">
+        <div class="vacancies-content__left">
+          <h2 class="t-h2">Наши вакансии</h2>
+        </div>
+        <div class="vacancies-content__right">
+          <ul class="vacancies-tabs">
+            <li>
+              <button class="vacancies-tab" data-tab="vac-constructor">
+                Конструктор
+                <svg class="i-arrow-sm"><use xlink:href="#i-arrow-sm" /></svg>
+              </button>
+            </li>
+            <li>
+              <button class="vacancies-tab" data-tab="vac-sale">
+                Менеджер по продажам
+                <svg class="i-arrow-sm"><use xlink:href="#i-arrow-sm" /></svg>
+              </button>
+            </li>
+            <li>
+              <button class="vacancies-tab" data-tab="vac-assistant">
+                Помощник руководителя
+                <svg class="i-arrow-sm"><use xlink:href="#i-arrow-sm" /></svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="vacancies-content" data-tab-content="vac-constructor">
+        <div class="vacancies-content__left">
+          <button class="vacancy-back u-center" data-tab="vac-root">
+            <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
+          </button>
+          <h2 class="t-h2">Конструктор</h2>
+        </div>
+        <div class="vacancies-content__right">
+          <div class="vacancy-description">
+            <p>Если тебе откликаются ценности:</p>
+            <ul>
+              <li>Ответственность и самоорганизация;</li>
+              <li>Человечность и взаимоуважение;</li>
+              <li>Созидание и желание развиваться;</li>
+            </ul>
+            <p>Если ты хочешь создавать вместе с нами:</p>
+            <ul>
+              <li>Красивый дизайн, с которым удобно жить;</li>
+              <li>Производство качественной мебели точно в срок;</li>
+              <li>Клиентоориентированный сервис;</li>
+            </ul>
+            <p>Так чего ты ждешь?</p>
+            <p>
+              Расскажи о себе и о том, почему ты хочешь у нас работать.
+            </p>
+            <button class="btn" data-modal-open="vacancy">
+              Оставить заявку
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="vacancies-content" data-tab-content="vac-sale">
+        <div class="vacancies-content__left">
+          <button class="vacancy-back u-center" data-tab="vac-root">
+            <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
+          </button>
+          <h2 class="t-h2">Менеджер по продажам</h2>
+        </div>
+        <div class="vacancies-content__right">
+          <div class="vacancy-description">
+            <p>Если тебе откликаются ценности:</p>
+            <ul>
+              <li>Ответственность и самоорганизация;</li>
+              <li>Человечность и взаимоуважение;</li>
+              <li>Созидание и желание развиваться;</li>
+            </ul>
+            <p>Если ты хочешь создавать вместе с нами:</p>
+            <ul>
+              <li>Красивый дизайн, с которым удобно жить;</li>
+              <li>Производство качественной мебели точно в срок;</li>
+              <li>Клиентоориентированный сервис;</li>
+            </ul>
+            <p>Так чего ты ждешь?</p>
+            <p>
+              Расскажи о себе и о том, почему ты хочешь у нас работать.
+            </p>
+            <button class="btn" data-modal-open="vacancy">
+              Оставить заявку
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="vacancies-content" data-tab-content="vac-assistant">
+        <div class="vacancies-content__left">
+          <button class="vacancy-back u-center" data-tab="vac-root">
+            <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
+          </button>
+          <h2 class="t-h2">Помощник руководителя</h2>
+        </div>
+        <div class="vacancies-content__right">
+          <div class="vacancy-description">
+            <p>Если тебе откликаются ценности:</p>
+            <ul>
+              <li>Ответственность и самоорганизация;</li>
+              <li>Человечность и взаимоуважение;</li>
+              <li>Созидание и желание развиваться;</li>
+            </ul>
+            <p>Если ты хочешь создавать вместе с нами:</p>
+            <ul>
+              <li>Красивый дизайн, с которым удобно жить;</li>
+              <li>Производство качественной мебели точно в срок;</li>
+              <li>Клиентоориентированный сервис;</li>
+            </ul>
+            <p>Так чего ты ждешь?</p>
+            <p>
+              Расскажи о себе и о том, почему ты хочешь у нас работать.
+            </p>
+            <button class="btn" data-modal-open="vacancy">
+              Оставить заявку
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  @include('../blocks/footer.html')
+</main>
+
+@include('../includes/footer.html')

@@ -82,8 +82,12 @@ $.delegate('.js-scrollto', (e, el) => {
   e.preventDefault();
   const { dataset } = el;
 
-  // WARNING: Сильная завязка к конкретному элементу .zoomer
+  // Идем на главную, если на внутренней странице
+  if (!$.qs('.zoomer')) {
+    $.qs('.header__logo').click();
+  }
 
+  // WARNING: Сильная завязка к конкретному элементу .zoomer
   if (dataset.target !== '.zoomer') {
     window.zoomer.scrollAnimating = true;
 

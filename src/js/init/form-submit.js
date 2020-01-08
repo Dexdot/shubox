@@ -40,6 +40,7 @@ class Form {
 
   reset() {
     this.form.reset();
+    this.form.dispatchEvent(new Event('reset'));
   }
 
   onSuccess = () => {
