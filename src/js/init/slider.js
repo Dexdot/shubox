@@ -53,44 +53,33 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Gallery
 window.addEventListener('DOMContentLoaded', () => {
-  // const firstNum = $.qs('.zoomer__counter span:first-child');
-  // const lastNum = $.qs('.zoomer__counter span:last-child');
-
   const onUpdate = ({ index, DOM }) => {
     // Arrows
-    // firstNum.textContent = index + 1;
-    // lastNum.textContent = DOM.slides.length;
 
     if (index === 0) {
       $.each('.js-zooder-prev', el => {
         el.classList.remove('active');
       });
-      // firstNum.classList.remove('active');
     } else {
       $.each('.js-zooder-prev', el => {
         el.classList.add('active');
       });
-      // firstNum.classList.add('active');
     }
 
     if (index === DOM.slides.length - 1) {
       $.each('.js-zooder-next', el => {
         el.classList.remove('active');
       });
-      // lastNum.classList.remove('active');
     } else {
       $.each('.js-zooder-next', el => {
         el.classList.add('active');
       });
-      // lastNum.classList.add('active');
     }
   };
 
-  // const zoomerMob = new Slider($.qs('.zoomer-mob ul'));
   onUpdate(window.zoomer.zoomer);
   window.zoomer.zoomer.DOM.el.addEventListener('slider:updatecomplete', () => {
     onUpdate(window.zoomer.zoomer);
-    // zoomerMob.update('', window.zoomer.zoomer.index);
   });
 
   $.delegate('.js-zooder-prev', () => {

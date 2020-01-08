@@ -52,6 +52,8 @@ export function open(el, modal) {
   onOpen(modal);
 
   // scroll.disable(el);
+  // window.scroll.stop();
+
   el.classList.add('active');
   window.addEventListener('keydown', onEscape);
 }
@@ -59,6 +61,8 @@ export function open(el, modal) {
 export function close(el, modal) {
   onClose(modal);
   // scroll.enable();
+  // window.scroll.start();
+
   el.classList.remove('active');
 
   window.removeEventListener('keydown', onEscape);

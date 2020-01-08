@@ -65,12 +65,12 @@ export default class Zoomer {
 
     // Resize
     window.addEventListener('resize', this.onResize.bind(this));
-    window.addEventListener('keydown', e => {
-      if ([32, 38, 40].includes(e.keyCode)) {
-        e.preventDefault();
-        return false;
-      }
-    });
+    // window.addEventListener('keydown', e => {
+    //   if ([32, 38, 40].includes(e.keyCode)) {
+    //     e.preventDefault();
+    //     return false;
+    //   }
+    // });
 
     $.delegate('.js-zoomer-prev', () => {
       this.prev();

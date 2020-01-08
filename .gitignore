@@ -9,3 +9,5 @@ Thumbs.db
 *.pdf
 yarn.lock
 npm-debug.log*
+
+*.php

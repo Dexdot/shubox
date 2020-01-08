@@ -142,7 +142,7 @@
 
   <div class="modal__container">
     <div class="modal__content">
-      <form class="order__form" action="form.php" method="POST">
+      <form class="order__form js-form" action="./form.php" method="POST">
         <div class="order__form-head">
           <b>Отправить заявку</b>
           <button class="u-center" type="button" data-modal-close="order">
@@ -199,7 +199,12 @@
 
   <div class="modal__container">
     <div class="modal__content">
-      <form class="order__form" action="form.php" method="POST">
+      <form
+        class="order__form js-form"
+        action="./vacancy.php"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         <div class="order__form-head">
           <b>Отправить заявку</b>
           <button class="u-center" type="button" data-modal-close="vacancy">
@@ -239,12 +244,17 @@
           </label>
 
           <label class="input input--textarea">
-            <textarea class="input__field"></textarea
+            <textarea class="input__field" name="form_msg"></textarea
             ><span class="input__text">Сопроводительное письмо</span>
           </label>
 
           <div class="upload js-upload">
-            <input class="upload__field js-upload-input" type="file" required />
+            <input
+              class="upload__field js-upload-input"
+              type="file"
+              required
+              name="form_file"
+            />
             <svg class="i-clip"><use xlink:href="#i-clip" /></svg>
             <svg class="i-file"><use xlink:href="#i-file" /></svg>
             <span class="upload__text js-upload-text">Прикрепить резюме</span>
@@ -254,7 +264,7 @@
           </div>
 
           <label class="checkbox checkbox--outlined">
-            <input class="checkbox__field" type="checkbox" /><span
+            <input class="checkbox__field" type="checkbox" required /><span
               class="checkbox__rect"
             >
               <svg class="checkbox__daw i-daw">
@@ -285,6 +295,11 @@
   <div class="modal__container">
     <div class="modal__content">
       <div class="success-content">
+        <button
+          class="u-hidden"
+          type="button"
+          data-modal-open="success"
+        ></button>
         <button class="u-center" type="button" data-modal-close="success">
           <svg class="i-close"><use xlink:href="#i-close" /></svg>
         </button>
