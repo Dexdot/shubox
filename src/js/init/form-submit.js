@@ -43,6 +43,8 @@ class Form {
   }
 
   onSuccess = () => {
+    const name = this.form.closest('[data-modal]').dataset.modal;
+    $.qs(`[data-modal-close="${name}"]`).click();
     $.qs('[data-modal-open="success"]').click();
   };
 

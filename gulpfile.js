@@ -165,17 +165,16 @@ gulp.task('watch', ['html', 'js', 'sass', 'sprite', 'browser-sync'], () => {
 
 // Build
 gulp.task('build', ['removedist', 'html', 'sass', 'sprite', 'js-min'], () => {
-  const buildFiles = gulp.src(['src/*.html']).pipe(gulp.dest('dist'));
+  gulp.src(['src/*.html']).pipe(gulp.dest('dist'));
+  gulp.src(['src/**/*.php']).pipe(gulp.dest('dist'));
 
-  const buildFonts = gulp.src(['src/fonts/**/*']).pipe(gulp.dest('dist/fonts'));
+  gulp.src(['src/fonts/**/*']).pipe(gulp.dest('dist/fonts'));
 
-  const buildCss = gulp
-    .src([`${src.css}/main.min.css`])
-    .pipe(gulp.dest('dist/css'));
+  gulp.src([`${src.css}/main.min.css`]).pipe(gulp.dest('dist/css'));
 
-  const buildJs = gulp.src([`${src.js}/*.js`]).pipe(gulp.dest('dist/js'));
+  gulp.src([`${src.js}/*.js`]).pipe(gulp.dest('dist/js'));
 
-  const buildImg = gulp.src(['src/img/**/*']).pipe(gulp.dest('dist/img'));
+  gulp.src(['src/img/**/*']).pipe(gulp.dest('dist/img'));
 });
 
 // Default task
