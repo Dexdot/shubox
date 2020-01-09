@@ -26,6 +26,8 @@ const initTabs = () => {
     const content = $.qs(`[data-tab-content=${tab}]`);
     el.classList.add('active');
     content.classList.add('active');
+
+    window.loco.update();
   });
 };
 
