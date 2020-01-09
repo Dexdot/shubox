@@ -50,6 +50,7 @@
     "autosize": "^4.0.2",
     "axios": "^0.19.1",
     "gsap": "2.1.3",
+    "hammerjs": "^2.0.8",
     "inputmask": "^5.0.1",
     "locomotive-scroll": "^3.2.6",
     "virtual-scroll": "^1.5.1",

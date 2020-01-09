@@ -1,0 +1,24 @@
+.rail
+  font-size: 0
+  cursor: grab
+  transform: translate3d(0, 0, 0)
+
+  position: relative
+
+.rail__container
+  will-change: transform
+  transform: translateX(0)
+  position: relative
+
+  display: inline-flex
+  white-space: nowrap
+
+.rail__track
+  display: inline-flex
+  font-size: 0
+
+.rail__track > li
+  display: inline-block
+
+  +base-text
+  white-space: normal

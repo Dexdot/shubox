@@ -11,3 +11,4 @@ import '@/init/upload';
 import '@/init/form-submit';
 import '@/init/tabs';
 import '@/init/autosize';
+import '@/init/rail';
