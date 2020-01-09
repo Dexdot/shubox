@@ -38,16 +38,16 @@ export default class Upload {
   onFileInputChange() {
     // Выбираем загруженный файл
     const file = this.DOM.input.files[0];
-    // const fileName = file.name.toLowerCase();
-    // const isValidExtension = this.TYPES.some(
-    //   type =>
-    //     fileName.endsWith(type) ||
-    //     fileName.endsWith(type.toLowerCase()) ||
-    //     fileName.endsWith(type.toUpperCase())
-    // );
+    const fileName = file.name.toLowerCase();
+    const isValidExtension = this.TYPES.some(
+      type =>
+        fileName.endsWith(type) ||
+        fileName.endsWith(type.toLowerCase()) ||
+        fileName.endsWith(type.toUpperCase())
+    );
 
-    // if (file && isValidExtension) {
-    if (file) {
+    if (file && isValidExtension) {
+      // if (file) {
       this.showPreview(file);
     } else {
       this.clear();

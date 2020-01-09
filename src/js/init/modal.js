@@ -1,4 +1,4 @@
-// import scroll from '@/helpers/stop-scroll';
+import scroll from '@/helpers/stop-scroll';
 
 // Callbacks
 const onOpen = modal => {
@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', init);
 export function open(el, modal) {
   onOpen(modal);
 
-  // scroll.disable(el);
+  if (window.loco.isMobile) scroll.disable(el);
   // window.scroll.stop();
 
   el.classList.add('active');
@@ -60,7 +60,7 @@ export function open(el, modal) {
 
 export function close(el, modal) {
   onClose(modal);
-  // scroll.enable();
+  if (window.loco.isMobile) scroll.enable();
   // window.scroll.start();
 
   el.classList.remove('active');
