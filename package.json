@@ -53,6 +53,7 @@
     "hammerjs": "^2.0.8",
     "inputmask": "^5.0.1",
     "locomotive-scroll": "^3.2.6",
+    "lozad": "^1.14.0",
     "virtual-scroll": "^1.5.1",
     "wheel-indicator": "^1.3.0"
   }

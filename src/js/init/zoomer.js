@@ -516,7 +516,30 @@ export default class Zoomer {
   }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+const init = () => {
   const el = $.qs('.zoomer');
   if (el) window.zoomer = new Zoomer(el);
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+  const img = $.qs('.zoomer__img img');
+  if (!img) return false;
+
+  img.addEventListener('load', () => {
+    if (!img.dataset.inited) {
+      img.dataset.inited = 'true';
+      init();
+    }
+  });
+
+  const loadImages = () => {
+    if (window.innerWidth > 500 && !img.dataset.inited) {
+      img.src = 'img/render-3840.png';
+      $.each('img[data-src]', i => {
+        i.src = i.dataset.src;
+      });
+    }
+  };
+  loadImages();
+  window.addEventListener('resize', loadImages);
 });
