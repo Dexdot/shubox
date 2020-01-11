@@ -99,7 +99,7 @@ export default class Zoomer {
         .dataset.color;
       const innerColor = $.qs('.zoomer-colors__inner:last-child .active')
         .dataset.color;
-      const activeImgUrl = `/img/colors/${outerColor}-${innerColor}.jpg`;
+      const activeImgUrl = `img/colors/${outerColor}-${innerColor}.jpg`;
       this.DOM.img.src = activeImgUrl;
     });
 
