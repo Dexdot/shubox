@@ -113,6 +113,7 @@
       <a href="tel:+74997034010" class="header__phone">+7 (499) 703-40-10</a>
     </div>
     <a href="#" class="header__btn btn" data-modal-open="order"
+    data-type="Узнать стоимость"
       >Узнать стоимость</a
     >
     <button class="header__burger burger">
@@ -161,6 +162,7 @@
         action="http://www.hvxzcb.ru/shubox/form.php"
         method="POST"
       >
+        <input name="form_type" type="hidden" value="" />
         <div class="order__form-head">
           <b>Отправить заявку</b>
           <button class="u-center" type="button" data-modal-close="order">
@@ -197,7 +199,8 @@
               <svg class="checkbox__daw i-daw">
                 <use xlink:href="#i-daw"></use></svg></span
             ><span class="checkbox__text"
-              >Я согласен на обработку персональных данных</span
+              >Я согласен (на) на обработку персональных данных и ознакомился с
+              <a href="./policy.html">Политикой конфиденциальности</a></span
             >
           </label>
 
@@ -223,6 +226,7 @@
         method="POST"
         enctype="multipart/form-data"
       >
+        <input name="form_type" type="hidden" value="" />
         <div class="order__form-head">
           <b>Отправить заявку</b>
           <button class="u-center" type="button" data-modal-close="vacancy">
@@ -293,7 +297,8 @@
               <svg class="checkbox__daw i-daw">
                 <use xlink:href="#i-daw"></use></svg></span
             ><span class="checkbox__text"
-              >Я согласен на обработку персональных данных</span
+              >Я согласен (на) на обработку персональных данных и ознакомился с
+              <a href="./policy.html">Политикой конфиденциальности</a></span
             >
           </label>
 
@@ -548,7 +553,13 @@
         <p>
           Хотите увидеть, как будет выглядеть новая мебель в вашем интерьере?
         </p>
-        <a href="#" class="link" data-modal-open="order">Получить 3D проект</a>
+        <a
+          href="#"
+          class="link"
+          data-modal-open="order"
+          data-type="Получить 3D проект"
+          >Получить 3D проект</a
+        >
       </div>
     </div>
 
@@ -617,7 +628,13 @@
           индивидуальным дизайном и размерами. Интерьер прихожей можно дополнить
           панелями, шкафом, комодом или боксом для хранения обуви.
         </p>
-        <a href="#" class="link" data-modal-open="order">Вызвать дизайнера</a>
+        <a
+          href="#"
+          class="link"
+          data-modal-open="order"
+          data-type="Вызвать дизайнера"
+          >Вызвать дизайнера</a
+        >
       </div>
     </div>
     <div class="feature">
@@ -692,7 +709,7 @@
     <div class="text-block__info footer__info">
       <b>Офис</b>
       <p itemprop="address">
-        г.Санкт-Петербург, Пулковское шоссе, д.28, БЦ PULKOVO STAR
+        г. Санкт-Петербург, Пулковское шоссе, д.28, БЦ PULKOVO STAR
       </p>
 
       <b>Телефон</b>

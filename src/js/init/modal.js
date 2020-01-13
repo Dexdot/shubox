@@ -1,5 +1,15 @@
 import scroll from '@/helpers/stop-scroll';
 
+$.delegate('[data-type]', (e, el) => {
+  if (el.dataset.modalOpen && el.dataset.modalOpen === 'order') {
+    $.qs('[data-modal="order"] input[name="form_type"]').value =
+      el.dataset.type;
+  } else if (el.dataset.tab) {
+    $.qs('[data-modal="vacancy"] input[name="form_type"]').value =
+      el.dataset.type;
+  }
+});
+
 // Callbacks
 const onOpen = modal => {
   $.qs('body').classList.add(`modal-${modal}-active`);
