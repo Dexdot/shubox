@@ -92,6 +92,9 @@
             <a class="js-scrollto" href="#" data-target=".zoomer">О продукте</a>
           </li>
           <li>
+            <a href="./catalog.html">Скачать каталог</a>
+          </li>
+          <li>
             <a class="js-scrollto" href="#" data-target=".gallery__head"
               >Бесплатный 3d проект</a
             >
@@ -112,8 +115,11 @@
 
       <a href="tel:+74997034010" class="header__phone">+7 (499) 703-40-10</a>
     </div>
-    <a href="#" class="header__btn btn" data-modal-open="order"
-    data-type="Узнать стоимость"
+    <a
+      href="#"
+      class="header__btn btn"
+      data-modal-open="order"
+      data-type="Узнать стоимость"
       >Узнать стоимость</a
     >
     <button class="header__burger burger">
@@ -132,6 +138,9 @@
     <ul class="t-ttu t-tac">
       <li>
         <a class="js-scrollto" href="#" data-target=".zoomer">О продукте</a>
+      </li>
+      <li>
+        <a href="./catalog.html">Скачать каталог</a>
       </li>
       <li>
         <a class="js-scrollto" href="#" data-target=".gallery__head"
@@ -199,7 +208,7 @@
               <svg class="checkbox__daw i-daw">
                 <use xlink:href="#i-daw"></use></svg></span
             ><span class="checkbox__text"
-              >Я согласен (на) на обработку персональных данных и ознакомился с
+              >Я соглашаюсь на обработку персональных данных и ознакомился с
               <a href="./policy.html">Политикой конфиденциальности</a></span
             >
           </label>
@@ -278,7 +287,6 @@
             <input
               class="upload__field js-upload-input"
               type="file"
-              required
               accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf"
               name="form_file"
             />
@@ -297,7 +305,7 @@
               <svg class="checkbox__daw i-daw">
                 <use xlink:href="#i-daw"></use></svg></span
             ><span class="checkbox__text"
-              >Я согласен (на) на обработку персональных данных и ознакомился с
+              >Я соглашаюсь на обработку персональных данных и ознакомился с
               <a href="./policy.html">Политикой конфиденциальности</a></span
             >
           </label>
@@ -345,8 +353,8 @@
     <section class="hero">
       <div class="hero__text">
         <h1 class="hero__title t-h1">
-          <span>Банкетки с системой хранения от 25.000 руб</span>
-          <span>Банкетки от 25.000 руб</span>
+          <span>Банкетки с системой хранения от 27 500 руб</span>
+          <span>Банкетки от 27 500 руб</span>
         </h1>
         <a href="./catalog.html" class="link">Скачать каталог</a>
       </div>
@@ -476,7 +484,7 @@
               Закажите банкетку с индивидуальным дизайном и размерами!
             </p>
           </li>
-          <li class="zoomer__slide" data-x="-10" data-y="1" data-scale="4">
+          <li class="zoomer__slide" data-x="-20" data-y="1" data-scale="3">
             <h2 class="t-h2">Мягкий верх</h2>
             <p>
               Капитане, “матрасик” или “валики”. Износостойкий велюр, моющаяся
@@ -654,6 +662,17 @@
           <svg class="i-chevron"><use xlink:href="#i-chevron" /></svg>
         </button>
       </div>
+
+      <div class="gallery-slider__transparent-buttons">
+        <button
+          type="button"
+          class="js-gallery-prev"
+        ></button>
+        <button
+          type="button"
+          class="js-gallery-next"
+        ></button>
+      </div>
     </div>
   </section>
 
@@ -750,7 +769,7 @@
     <div class="text-block__info footer__info">
       <b>Офис</b>
       <p itemprop="address">
-        г. Санкт-Петербург, Пулковское шоссе, д.28, БЦ PULKOVO STAR
+        Санкт-Петербург, Пулковское шоссе, д.28, БЦ PULKOVO STAR
       </p>
 
       <b>Телефон</b>
@@ -812,6 +831,7 @@
 
 </main>
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
 <script defer src="js/index.js"></script>
 
 </body>
