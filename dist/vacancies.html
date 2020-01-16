@@ -350,9 +350,14 @@
 
 <main class="vacancies" id="js-scroll">
   <div class="container">
-    <div class="vacancies-container">
+    <div class="vacancies-container" id="vacancies">
       <section class="vacancies-content active" data-tab-content="vac-root">
-        <div class="vacancies-content__left">
+        <div
+          class="vacancies-content__left"
+          data-scroll
+          data-scroll-sticky
+          data-scroll-target="#vacancies"
+        >
           <h2 class="t-h2">Вакансии SHUBOX</h2>
         </div>
         <div class="vacancies-content__right">
@@ -382,7 +387,12 @@
       </section>
 
       <section class="vacancies-content" data-tab-content="vac-sale">
-        <div class="vacancies-content__left">
+        <div
+          class="vacancies-content__left"
+          data-scroll
+          data-scroll-sticky
+          data-scroll-target="#vacancies"
+        >
           <button class="vacancy-back u-center" data-tab="vac-root">
             <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
           </button>
@@ -535,7 +545,12 @@
       </section>
 
       <section class="vacancies-content" data-tab-content="vac-assistant">
-        <div class="vacancies-content__left">
+        <div
+          class="vacancies-content__left"
+          data-scroll
+          data-scroll-sticky
+          data-scroll-target="#vacancies"
+        >
           <button class="vacancy-back u-center" data-tab="vac-root">
             <svg class="i-arrow"><use xlink:href="#i-arrow" /></svg>
           </button>
