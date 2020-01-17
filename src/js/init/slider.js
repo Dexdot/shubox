@@ -54,13 +54,10 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Gallery
-window.addEventListener('DOMContentLoaded', () => {
-  if (!window.zoomer) return false;
-
+// Zooder
+document.addEventListener('zoomer:inited', () => {
   const onUpdate = ({ index, DOM }) => {
     // Arrows
-
     if (index === 0) {
       $.each('.js-zooder-prev', el => {
         el.classList.remove('active');

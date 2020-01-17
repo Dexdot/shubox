@@ -1,6 +1,7 @@
 import { TweenMax, Power2 } from 'gsap';
 import WheelIndicator from 'wheel-indicator';
 import Slider from '@/components/slider';
+import { isMobileDevice } from '@/helpers/detect';
 
 const arrayMax = arr => arr.reduce((p, v) => (p > v ? p : v));
 
@@ -518,7 +519,10 @@ export default class Zoomer {
 
 const init = () => {
   const el = $.qs('.zoomer');
-  if (el) window.zoomer = new Zoomer(el);
+  if (el) {
+    window.zoomer = new Zoomer(el);
+    document.dispatchEvent(new Event('zoomer:inited'));
+  }
 };
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -533,8 +537,10 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   const loadImages = () => {
-    if (window.innerWidth > 500 && !img.dataset.inited) {
-      img.src = 'img/render-3840.png';
+    if (!img.dataset.inited) {
+      img.src = isMobileDevice()
+        ? 'img/render-1000.png'
+        : 'img/render-3840.png';
       $.each('img[data-src]', i => {
         i.src = i.dataset.src;
       });
