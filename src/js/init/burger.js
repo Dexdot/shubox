@@ -5,3 +5,7 @@ $.delegate('.burger', (e, el) => {
 
   window.scroll[el.classList.contains('active') ? 'stop' : 'start']();
 });
+
+if ($.qs('[data-page]').dataset.page !== 'main') {
+  $.qs('.header__nav').classList.add('u-hidden');
+}

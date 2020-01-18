@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const gallerySliderList = $.qs('.gallery-slider ul');
   if (!gallerySliderList) return false;
 
-  const gallery = new Slider(gallerySliderList);
+  const gallery = new Slider(gallerySliderList, true);
   onUpdate(gallery);
   gallery.DOM.el.addEventListener('slider:updatecomplete', () => {
     onUpdate(gallery);
