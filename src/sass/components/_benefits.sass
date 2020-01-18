@@ -4,6 +4,7 @@ $ben-b: rgba(#000, 0.1)
   +yo('margin-top', (500px: 56px, 1440px: 104px))
   @media (min-width: 801px)
     border-top: 1px solid $ben-b
+    border-bottom: 1px solid $ben-b
 
 .benefits-list
   display: flex
@@ -36,6 +37,8 @@ $ben-b: rgba(#000, 0.1)
     border-top: 1px solid $ben-b
 
   &:last-child
+    @media (max-width: 800px)
+      border-bottom: 1px solid $ben-b
     @media (min-width: 801px)
       border-right: 1px solid $ben-b
 

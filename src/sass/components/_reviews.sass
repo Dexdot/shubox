@@ -1,0 +1,67 @@
+$rev: 8.88888888888889vw
+  
+  
+.reviews
+  padding-top: 104px
+  padding-bottom: 112px
+  @media (max-width: 500px)
+    padding-top: 64px
+    padding-bottom: 80px
+
+.reviews__head
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin-bottom: 40px
+
+  @media (min-width: 1001px)
+    padding-left: $rev
+    padding-right: $rev
+
+  @media (max-width: 1000px)
+    padding-left: $unit
+    padding-right: $unit
+
+  @media (max-width: 700px)
+    margin-bottom: 24px
+
+// .reviews__nav .slider-nav:not(.slider-nav--mob)
+//   @media (max-width: 700px)
+//     display: flex
+
+.reviews__title
+  +mont(r)
+  line-height: 1.2
+
+
+.reviews__slider-container
+  padding-top: 8px
+  padding-bottom: 8px
+  padding-right: 24px
+  cursor: pointer
+  @media (min-width: 1001px)
+    padding-left: $rev
+  @media (max-width: 1000px)
+    padding-left: $unit
+  @media (max-width: 500px)
+    padding-right: 16px
+
+.reviews__slider
+
+.reviews__slide
+  margin-right: 24px
+  padding: 10px
+  width: 216px
+
+  background: #FFFFFF
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+  border-radius: 16px
+
+  @media (max-width: 500px)
+    margin-right: 16px
+
+.reviews__slide > img
+  display: block
+  width: 100%
+  height: auto
+  margin: auto
