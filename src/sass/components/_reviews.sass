@@ -50,7 +50,14 @@ $rev: 8.88888888888889vw
   @media (max-width: 500px)
     padding-right: 16px
 
+
 .reviews__slider
+  cursor: grab
+
+.reviews__slider,
+.reviews__slide,
+.reviews__slide > img
+  will-change: transform
 
 .reviews__slide
   margin-right: 24px
@@ -60,12 +67,30 @@ $rev: 8.88888888888889vw
   background: #FFFFFF
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
   border-radius: 16px
+  transition: transform $trs
+
+  &:hover
+    transform: scale(0.97)
 
   @media (max-width: 500px)
     margin-right: 16px
 
 .reviews__slide > img
+  cursor: pointer
   display: block
   width: 100%
   height: auto
   margin: auto
+
+// Modal
+.modal.review .modal__container
+  width: auto
+
+.review-img img
+  height: 96vh
+  display: block
+  width: auto
+  max-width: 100vw
+  object-fit: contain
+
+

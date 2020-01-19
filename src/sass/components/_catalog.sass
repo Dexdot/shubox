@@ -39,9 +39,15 @@
     flex-direction: column
     align-items: center
 
-.catalog-list li.no-hover
+.catalog-list li.inactive
   cursor: none
   pointer-events: none
+
+  img
+    filter: grayscale(100%)
+
+  span
+    opacity: 0.5
 
 .catalog-list li
   transition: $trs-4

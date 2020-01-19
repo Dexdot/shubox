@@ -14,3 +14,4 @@ import '@/init/autosize';
 import '@/init/rail';
 import '@/init/lozad';
 import '@/init/swiper';
+import '@/init/review';

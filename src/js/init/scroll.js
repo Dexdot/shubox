@@ -14,12 +14,13 @@ const scrollbar = {
   }
 };
 
-window.addEventListener('DOMContentLoaded', () => {
-  loco = new LocomotiveScroll({
-    el: document.querySelector('#js-scroll'),
-    smooth: true,
-    getDirection: true
-  });
+// Header primary state
+const headerPrimary = loco => {
+  const mainEl = $.qs('[data-page]');
+  if (!mainEl) return false;
+
+  const isMain = mainEl.dataset.page === 'main';
+  if (!isMain) return false;
 
   loco.on('scroll', e => {
     if (e.scroll.y > 80) {
@@ -28,6 +29,16 @@ window.addEventListener('DOMContentLoaded', () => {
       $.qs('.header').classList.remove('header--primary');
     }
   });
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+  loco = new LocomotiveScroll({
+    el: document.querySelector('#js-scroll'),
+    smooth: true,
+    getDirection: true
+  });
+
+  headerPrimary(loco);
 
   window.loco = loco;
 

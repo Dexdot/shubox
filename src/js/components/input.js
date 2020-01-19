@@ -1,5 +1,8 @@
 import Inputmask from 'inputmask';
 
+const maskPhone = '+9(999)999-99-99';
+const maskOptions = { showMaskOnHover: false };
+
 export default class Input {
   constructor(el) {
     this.el = el;
@@ -11,13 +14,29 @@ export default class Input {
   }
 
   setup() {
-    if (this.isPhone) {
-      this.im = new Inputmask('+9(999)999-99-99', { showMaskOnHover: false });
-      this.im.mask(this.input);
-    }
-
+    if (this.isPhone) this.handlePhone();
     this.handleKeyup();
     this.handleFocus();
+  }
+
+  handlePhone() {
+    const initMask = () => {
+      const im = new Inputmask(maskPhone, maskOptions);
+      im.mask(this.input);
+    };
+    initMask();
+
+    this.input.addEventListener('keydown', ({ keyCode }) => {
+      if (typeof keyCode === 'undefined') {
+        this.input.inputmask.remove();
+      }
+    });
+
+    this.input.addEventListener('keyup', ({ keyCode }) => {
+      if (keyCode === 'undefined') {
+        initMask();
+      }
+    });
   }
 
   handleKeyup() {
