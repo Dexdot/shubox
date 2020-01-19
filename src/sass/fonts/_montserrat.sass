@@ -1,5 +1,12 @@
 @font-face
   font-family: 'Montserrat'
+  src: url('../fonts/montserrat/Montserrat-ExtraLight.woff2') format('woff2'),url('../fonts/montserrat/Montserrat-ExtraLight.woff') format('woff')
+  font-style: normal
+  font-weight: 200
+  font-display: swap
+
+@font-face
+  font-family: 'Montserrat'
   src: url('../fonts/montserrat/Montserrat-Regular.woff2') format('woff2'),url('../fonts/montserrat/Montserrat-Regular.woff') format('woff')
   font-style: normal
   font-weight: 400
@@ -21,6 +28,9 @@
 
   
 =mont($weight: m)
+  @if $weight == exl
+    font-family: 'Montserrat', sans-serif
+    font-weight: 200
   @if $weight == r
     font-family: 'Montserrat', sans-serif
     font-weight: 400
