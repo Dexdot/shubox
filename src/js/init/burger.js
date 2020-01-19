@@ -8,4 +8,5 @@ $.delegate('.burger', (e, el) => {
 
 if ($.qs('[data-page]').dataset.page !== 'main') {
   $.qs('.header__nav').classList.add('u-hidden');
+  $.qs('.header').classList.add('header--noburger');
 }
