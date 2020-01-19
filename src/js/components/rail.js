@@ -11,7 +11,6 @@ export default class Rail {
 
     this.requestAnimation = null;
 
-    // this.scrollPosition = window.scrollY;
     this.translation = 0;
 
     this.grabbed = false;
@@ -33,13 +32,9 @@ export default class Rail {
   }
 
   initializeEvents() {
-    // this.updateBind = this.updateScroll.bind(this);
     this.update();
-    // this.updateBind();
 
-    // window.addEventListener('scroll', this.updateBind);
-
-    Array.from(this.DOM.el.querySelectorAll('a')).forEach(a => {
+    $.qsa('a', this.DOM.el).forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
 
@@ -82,13 +77,6 @@ export default class Rail {
     this.panManager.on('panstart panmove', this.onPanMove);
     this.panManager.on('panend', this.onPanEnd);
   }
-
-  // updateScroll() {
-  //   const t = window.scrollY - this.scrollPosition;
-  //   this.scrollPosition = window.scrollY;
-
-  //   if (t !== 0) this.velocity = this.originalVelocity * t;
-  // }
 
   update() {
     if (!this.grabbed) {

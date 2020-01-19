@@ -10,6 +10,21 @@ const initRail = () => {
     railContainer.append(trackContainer.cloneNode(true));
 
     const rail = new Rail(el);
+
+    if (el.classList.contains('reviews-rail')) {
+      $.qsa('.js-review', rail.DOM.el).forEach(img => {
+        img.addEventListener('click', () => {
+          // Set modal img src
+          const { src } = img.dataset;
+          $.qs('.review-img img').src = src;
+
+          // Open if not dragging
+          if (!rail.preventClick) {
+            $.qs('[data-modal-open="review"]').click();
+          }
+        });
+      });
+    }
   });
 };
 
