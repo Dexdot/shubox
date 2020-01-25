@@ -3,11 +3,13 @@ window.addEventListener('DOMContentLoaded', () => {
   if (!visualImg) return false;
 
   visualImg.addEventListener('load', () => {
-    visualImg.style.display = 'block';
+    setTimeout(() => {
+      visualImg.style.opacity = 1;
+    }, 200);
   });
 
   $.delegate('.js-visual', (e, el) => {
-    visualImg.style.display = 'none';
+    visualImg.style.opacity = 0;
 
     $.qs('[data-modal-open="visual"]').click();
 
