@@ -1,15 +1,16 @@
 window.addEventListener('DOMContentLoaded', () => {
   const visualImg = $.qs('.visual-img img');
   if (!visualImg) return false;
+  const container = $.qs('.visual .modal__container');
 
   visualImg.addEventListener('load', () => {
     setTimeout(() => {
-      visualImg.style.opacity = 1;
+      container.style.visibility = 'visible';
     }, 200);
   });
 
   $.delegate('.js-visual', (e, el) => {
-    visualImg.style.opacity = 0;
+    container.style.visibility = 'hidden';
 
     $.qs('[data-modal-open="visual"]').click();
 
