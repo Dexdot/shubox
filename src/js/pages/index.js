@@ -13,5 +13,5 @@ import '@/init/tabs';
 import '@/init/autosize';
 import '@/init/rail';
 import '@/init/lozad';
+import '@/init/visual';
 // import '@/init/swiper';
-// import '@/init/review';
