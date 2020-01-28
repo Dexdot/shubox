@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     $.qs('[data-modal-open="visual"]').click();
 
-    const { src } = el.dataset;
-    visualImg.src = src;
+    const { src, srcMob } = el.dataset;
+    visualImg.src = window.innerWidth <= 500 ? srcMob : src;
   });
 });
