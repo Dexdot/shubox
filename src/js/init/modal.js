@@ -15,6 +15,9 @@ const onOpen = modal => {
   $.qs('body').classList.add(`modal-${modal}-active`);
 
   switch (modal) {
+    case 'visual':
+      $.qs('.visual-img img').src = '';
+      break;
     default:
       break;
   }
